@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Análise DIT — Retorno Pós-Sinistro | MetLife × iFood</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #F5F5F5; color: #1A1A1A; font-size: 15px; line-height: 1.5; }
+
+  /* HEADER */
+  header { background: #1A1A1A; color: #fff; padding: 28px 40px; display: flex; align-items: center; gap: 20px; }
+  .badge { background: #EA1D2C; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+  header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  header p { font-size: 13px; color: #aaa; }
+
+  /* LAYOUT */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+  section { margin-bottom: 40px; }
+  h2 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 16px; border-bottom: 2px solid #EA1D2C; padding-bottom: 6px; display: inline-block; }
+
+  /* CARDS VISÃO GERAL */
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px 22px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+  .card .label { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+  .card .value { font-size: 32px; font-weight: 700; color: #1A1A1A; line-height: 1; }
+  .card .sub { font-size: 12px; color: #999; margin-top: 4px; }
+  .card.accent .value { color: #EA1D2C; }
+
+  /* COMPARATIVO */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .compare-block { background: #fff; border-radius: 8px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+  .compare-block h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .compare-block .total-tag { font-size: 12px; color: #999; margin-bottom: 18px; }
+  .metric-row { margin-bottom: 14px; }
+  .metric-row .metric-label { font-size: 12px; color: #555; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .metric-row .metric-label span { font-weight: 700; color: #1A1A1A; }
+  .bar-bg { background: #F0F0F0; border-radius: 4px; height: 8px; }
+  .bar-fill { height: 8px; border-radius: 4px; }
+  .def-color { color: #3B5998; }
+  .ind-color { color: #E67E22; }
+  .bar-def { background: #3B5998; }
+  .bar-ind { background: #E67E22; }
+  .bar-red { background: #EA1D2C; }
+  .bar-gray { background: #bbb; }
+
+  /* CHART */
+  .chart-box { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { background: #1A1A1A; color: #fff; padding: 11px 14px; text-align: left; font-size: 12px; font-weight: 600; letter-spacing: .3px; white-space: nowrap; }
+  tbody tr:nth-child(odd) { background: #fff; }
+  tbody tr:nth-child(even) { background: #F9F9F9; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid #EEE; white-space: nowrap; }
+  tbody tr:hover { background: #FFF3F4; }
+  .tag-def { display:inline-block; background:#EBF0FF; color:#3B5998; font-size:11px; font-weight:700; padding:2px 7px; border-radius:3px; }
+  .tag-ind { display:inline-block; background:#FFF4E8; color:#E67E22; font-size:11px; font-weight:700; padding:2px 7px; border-radius:3px; }
+  .bias-row td { border-left: 3px solid #EA1D2C; }
+  .bias-note { font-size:11px; color:#EA1D2C; margin-top:8px; padding: 0 14px 12px; }
+
+  /* ACHADOS */
+  .achados { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .achado { background: #fff; border-radius: 8px; padding: 20px 22px; box-shadow: 0 1px 4px rgba(0,0,0,.07); display: flex; gap: 16px; align-items: flex-start; }
+  .achado-num { background: #EA1D2C; color: #fff; font-size: 13px; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .achado h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .achado p { font-size: 13px; color: #444; line-height: 1.55; }
+
+  /* METODOLOGIA */
+  .metodologia { background: #EAEAEA; border-radius: 8px; padding: 20px 24px; }
+  .metodologia ul { list-style: none; padding: 0; }
+  .metodologia ul li { font-size: 13px; color: #555; padding: 4px 0; padding-left: 16px; position: relative; }
+  .metodologia ul li::before { content: '–'; position: absolute; left: 0; color: #999; }
+
+  /* FOOTER */
+  footer { text-align: center; font-size: 12px; color: #aaa; padding: 24px; border-top: 1px solid #E0E0E0; background: #fff; }
+
+  @media (max-width: 768px) {
+    header { padding: 20px; flex-wrap: wrap; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .compare { grid-template-columns: 1fr; }
+    .achados { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .chart-box, .card, .compare-block, .achado { box-shadow: none; border: 1px solid #ddd; }
+    header { background: #1A1A1A !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <span class="badge">iFood</span>
+      <span style="font-size:12px;color:#666;">MetLife × iFood Logística · Seguros</span>
+    </div>
+    <h1>Análise DIT — Retorno Pós-Sinistro</h1>
+    <p>Cobertura de Devolução por Incapacidade Temporária &nbsp;|&nbsp; Nov/2025 – Abr/2026</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- VISÃO GERAL -->
+  <section>
+    <h2>Visão Geral</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="label">Total de sinistros</div>
+        <div class="value">6.212</div>
+        <div class="sub">DIT finalizados no período</div>
+      </div>
+      <div class="card">
+        <div class="label">Deferidos</div>
+        <div class="value def-color">3.142</div>
+        <div class="sub">50,6% do total</div>
+      </div>
+      <div class="card">
+        <div class="label">Indeferidos</div>
+        <div class="value ind-color">3.070</div>
+        <div class="sub">49,4% do total</div>
+      </div>
+      <div class="card accent">
+        <div class="label">Diferença retorno precoce</div>
+        <div class="value">30 p.p.</div>
+        <div class="sub">Indeferidos vs Deferidos (durante afast.)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIVO -->
+  <section>
+    <h2>Comparativo Deferido × Indeferido</h2>
+    <div class="compare">
+
+      <div class="compare-block">
+        <h3 class="def-color">Deferido</h3>
+        <div class="total-tag">3.142 sinistros &nbsp;·&nbsp; taxa de retorno total: <strong>75,7%</strong></div>
+
+        <div class="metric-row">
+          <div class="metric-label">Retorno durante afastamento <span>20,6%</span></div>
+          <div class="bar-bg"><div class="bar-fill bar-def" style="width:20.6%"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label">Retorno após afastamento <span>55,0%</span></div>
+          <div class="bar-bg"><div class="bar-fill bar-def" style="width:55%"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label">Não voltaram <span>24,3%</span></div>
+          <div class="bar-bg"><div class="bar-fill bar-red" style="width:24.3%"></div></div>
+        </div>
+      </div>
+
+      <div class="compare-block">
+        <h3 class="ind-color">Indeferido</h3>
+        <div class="total-tag">3.070 sinistros &nbsp;·&nbsp; taxa de retorno total: <strong>84,4%</strong></div>
+
+        <div class="metric-row">
+          <div class="metric-label">Retorno durante afastamento <span>50,6%</span></div>
+          <div class="bar-bg"><div class="bar-fill bar-ind" style="width:50.6%"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label">Retorno após afastamento <span>33,8%</span></div>
+          <div class="bar-bg"><div class="bar-fill bar-ind" style="width:33.8%"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label">Não voltaram <span>15,6%</span></div>
+          <div class="bar-bg"><div class="bar-fill bar-red" style="width:15.6%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EVOLUÇÃO MENSAL -->
+  <section>
+    <h2>Evolução Mensal — Taxa de Retorno Total</h2>
+    <div class="chart-box">
+      <canvas id="chart" height="90"></canvas>
+    </div>
+  </section>
+
+  <!-- TABELA DETALHADA -->
+  <section>
+    <h2>Detalhamento Mensal</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>% Voltaram</th>
+            <th>% Durante Afast.</th>
+            <th>% Após Afast.</th>
+            <th>% Não Voltaram</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Nov/25</td><td><span class="tag-def">Deferido</span></td><td>469</td><td><strong>84,4%</strong></td><td>21,5%</td><td>62,9%</td><td>15,6%</td></tr>
+          <tr><td>Nov/25</td><td><span class="tag-ind">Indeferido</span></td><td>267</td><td><strong>91,4%</strong></td><td>50,9%</td><td>40,4%</td><td>8,6%</td></tr>
+          <tr><td>Dez/25</td><td><span class="tag-def">Deferido</span></td><td>524</td><td><strong>83,6%</strong></td><td>20,4%</td><td>63,2%</td><td>16,4%</td></tr>
+          <tr><td>Dez/25</td><td><span class="tag-ind">Indeferido</span></td><td>620</td><td><strong>91,8%</strong></td><td>55,3%</td><td>36,5%</td><td>8,2%</td></tr>
+          <tr><td>Jan/26</td><td><span class="tag-def">Deferido</span></td><td>554</td><td><strong>83,4%</strong></td><td>22,7%</td><td>60,6%</td><td>16,6%</td></tr>
+          <tr><td>Jan/26</td><td><span class="tag-ind">Indeferido</span></td><td>656</td><td><strong>87,8%</strong></td><td>48,6%</td><td>39,2%</td><td>12,2%</td></tr>
+          <tr><td>Fev/26</td><td><span class="tag-def">Deferido</span></td><td>513</td><td><strong>73,7%</strong></td><td>19,7%</td><td>54,0%</td><td>26,3%</td></tr>
+          <tr><td>Fev/26</td><td><span class="tag-ind">Indeferido</span></td><td>437</td><td><strong>86,7%</strong></td><td>54,5%</td><td>32,3%</td><td>13,3%</td></tr>
+          <tr><td>Mar/26</td><td><span class="tag-def">Deferido</span></td><td>585</td><td><strong>71,8%</strong></td><td>19,7%</td><td>52,1%</td><td>28,2%</td></tr>
+          <tr><td>Mar/26</td><td><span class="tag-ind">Indeferido</span></td><td>512</td><td><strong>83,4%</strong></td><td>52,9%</td><td>30,5%</td><td>16,6%</td></tr>
+          <tr class="bias-row"><td>Abr/26 ⚠️</td><td><span class="tag-def">Deferido</span></td><td>497</td><td><strong>56,9%</strong></td><td>19,7%</td><td>37,2%</td><td>43,1%</td></tr>
+          <tr class="bias-row"><td>Abr/26 ⚠️</td><td><span class="tag-ind">Indeferido</span></td><td>578</td><td><strong>68,3%</strong></td><td>42,6%</td><td>25,8%</td><td>31,7%</td></tr>
+        </tbody>
+      </table>
+      <div class="bias-note">⚠️ Abr/2026 apresenta viés de maturidade — sinistros fechados no fim do mês tiveram menos tempo para gerar rotas. Não recomendado para benchmark.</div>
+    </div>
+  </section>
+
+  <!-- PRINCIPAIS ACHADOS -->
+  <section>
+    <h2>Principais Achados</h2>
+    <div class="achados">
+      <div class="achado">
+        <div class="achado-num">1</div>
+        <div>
+          <h4>Retorno precoce dos indeferidos</h4>
+          <p>50,6% dos indeferidos retornam durante o afastamento, contra 20,6% dos deferidos — diferença de <strong>30 p.p.</strong> O padrão indica pressão financeira como principal motivador, com risco de retorno antes da recuperação completa.</p>
+        </div>
+      </div>
+      <div class="achado">
+        <div class="achado-num">2</div>
+        <div>
+          <h4>Benefício cumpre sua função</h4>
+          <p>55,0% dos deferidos retornam somente após o período de afastamento indicado. O dado demonstra que o benefício está viabilizando a recuperação adequada dos entregadores.</p>
+        </div>
+      </div>
+      <div class="achado">
+        <div class="achado-num">3</div>
+        <div>
+          <h4>Menor não-retorno entre indeferidos não é positivo</h4>
+          <p>Os 15,6% que não retornaram entre indeferidos (vs. 24,3% nos deferidos) não refletem melhor recuperação — refletem ausência de suporte financeiro para permanecer afastado.</p>
+        </div>
+      </div>
+      <div class="achado">
+        <div class="achado-num">4</div>
+        <div>
+          <h4>Queda nas taxas a partir de Fev/26</h4>
+          <p>Deferidos: de ~83–84% (Nov–Jan) para 71,8% em Mar/26. Indeferidos: de ~87–92% para 83,4%. Parte explicada pelo viés de maturidade em Abr/26. Queda de Fev/Mar requer investigação — possível aumento de gravidade ou mudança no perfil dos sinistros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTA METODOLÓGICA -->
+  <section>
+    <h2>Nota Metodológica</h2>
+    <div class="metodologia">
+      <ul>
+        <li>Análise restrita a sinistros DIT com status "Fechado" (Deferido e Indeferido)</li>
+        <li>Fonte: base_full cruzada com main.logistics_delivery.routes</li>
+        <li>Retorno durante afastamento: data_primeira_rota &lt; data_ocorrencia + claim_days</li>
+        <li>Abr/2026 apresenta viés de maturidade — sinistros fechados no fim do mês tiveram menos tempo para gerar rotas</li>
+        <li>Meses de referência recomendados para benchmark: Nov/2025 a Mar/2026</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  iFood Logística &nbsp;·&nbsp; Seguros &nbsp;·&nbsp; Análise gerada em Mai/2026
+</footer>
+
+<script>
+Chart.register(ChartDataLabels);
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Nov/25', 'Dez/25', 'Jan/26', 'Fev/26', 'Mar/26', 'Abr/26'],
+    datasets: [
+      {
+        label: 'Deferido',
+        data: [84.4, 83.6, 83.4, 73.7, 71.8, 56.9],
+        borderColor: '#3B5998',
+        backgroundColor: 'rgba(59,89,152,0.08)',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#3B5998',
+        pointRadius: 5,
+        tension: 0.3,
+        fill: true,
+        datalabels: {
+          align: 'bottom',
+          anchor: 'start',
+          color: '#3B5998',
+          font: { size: 12, weight: '700' },
+          formatter: v => v + '%'
+        }
+      },
+      {
+        label: 'Indeferido',
+        data: [91.4, 91.8, 87.8, 86.7, 83.4, 68.3],
+        borderColor: '#E67E22',
+        backgroundColor: 'rgba(230,126,34,0.08)',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#E67E22',
+        pointRadius: 5,
+        tension: 0.3,
+        fill: true,
+        datalabels: {
+          align: 'bottom',
+          anchor: 'start',
+          color: '#E67E22',
+          font: { size: 12, weight: '700' },
+          formatter: v => v + '%'
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 13 }, padding: 20 } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}%`
+        }
+      },
+      datalabels: {}
+    },
+    scales: {
+      y: {
+        min: 40, max: 100,
+        ticks: { callback: v => v + '%', font: { size: 12 } },
+        grid: { color: '#EEE' }
+      },
+      x: {
+        ticks: { font: { size: 12 } },
+        grid: { display: false }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
