@@ -23,23 +23,16 @@
         .dist-item { flex:1; text-align:center; padding:8px; background:#f1f5f9; border-radius:6px; }
         .dist-item .pct { font-size:16px; font-weight:700; margin-bottom:2px; }
         .dist-item .label { font-size:10px; color:#64748b; }
-        .prom { color:#059669; }
-        .neu { color:#94a3b8; }
-        .det { color:#be123c; }
+        .prom { color:#059669; } .neu { color:#94a3b8; } .det { color:#be123c; }
         .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
         .cov-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:16px; }
         .cov-card { background:white; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
         .cov-title { font-size:13px; font-weight:700; color:#1e293b; margin-bottom:8px; }
         .cov-stats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; font-size:12px; }
         .cov-stats .nps { font-weight:700; color:#1e40af; }
-        .cov-stats .delta { font-size:11px; }
         .cov-legend { display:flex; gap:10px; margin-top:6px; font-size:10px; color:#64748b; }
         .cov-legend span { display:flex; align-items:center; gap:3px; }
         .cov-legend .dot { display:inline-block; width:8px; height:8px; border-radius:2px; }
-        .tabul-list { list-style:none; }
-        .tabul-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9; }
-        .tabul-item:last-child { border-bottom:none; }
-        .btn { display:inline-block; padding:6px 12px; background:#1e40af; color:white; border:none; border-radius:6px; font-size:11px; cursor:pointer; }
         .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000; }
         .modal.active { display:flex; align-items:center; justify-content:center; }
         .modal-content { background:white; border-radius:8px; max-width:600px; width:90%; max-height:80vh; display:flex; flex-direction:column; }
@@ -53,13 +46,12 @@
         .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; padding:6px 10px; border-radius:6px; }
         .section-promotores { color:#059669; background:#f0fdf4; }
         .section-detratores { color:#be123c; background:#fff1f2; }
-        .cov-stats .nps { font-weight:700; color:#1e40af; }
     </style>
 </head>
 <body>
     <header>
         <h1>Painel NPS MetLife × iFood</h1>
-        <p>Dados disponíveis até 23/05/2026 &nbsp;·&nbsp; Mai/26 MTD</p>
+        <p>Dados disponíveis até 23/05/2026 &nbsp;·&nbsp; Mai/26 MTD · Publicado pelo Toqan</p>
     </header>
     <div class="container">
         <div class="card">
@@ -79,219 +71,128 @@
             <div class="card">
                 <div class="card-title">Tendência MoM (últimos 6 meses)</div>
                 <svg viewBox="0 0 420 255" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:255px;display:block">
-                <rect x="14" y="22" width="44" height="63.7" fill="#059669"/><rect x="14" y="85.7" width="44" height="11.7" fill="#94a3b8"/><rect x="14" y="97.4" width="44" height="55.9" fill="#be123c"/>
-                <rect x="83" y="22" width="44" height="65" fill="#059669"/><rect x="83" y="87" width="44" height="7.8" fill="#94a3b8"/><rect x="83" y="94.8" width="44" height="57.2" fill="#be123c"/>
-                <rect x="152" y="22" width="44" height="70.2" fill="#059669"/><rect x="152" y="92.2" width="44" height="11.7" fill="#94a3b8"/><rect x="152" y="103.9" width="44" height="48.1" fill="#be123c"/>
-                <rect x="221" y="22" width="44" height="74.1" fill="#059669"/><rect x="221" y="96.1" width="44" height="7.8" fill="#94a3b8"/><rect x="221" y="103.9" width="44" height="48.1" fill="#be123c"/>
-                <rect x="290" y="22" width="44" height="72.8" fill="#059669"/><rect x="290" y="94.8" width="44" height="10.4" fill="#94a3b8"/><rect x="290" y="105.2" width="44" height="45.5" fill="#be123c"/>
-                <rect x="359" y="22" width="44" height="55.9" fill="#059669" opacity=".85"/><rect x="359" y="77.9" width="44" height="6.5" fill="#94a3b8" opacity=".85"/><rect x="359" y="84.4" width="44" height="67.6" fill="#be123c" opacity=".85"/>
-                <text x="36" y="57" font-size="10" fill="white" text-anchor="middle">49%</text><text x="36" y="128" font-size="10" fill="white" text-anchor="middle">43%</text>
-                <text x="105" y="58" font-size="10" fill="white" text-anchor="middle">50%</text><text x="105" y="126" font-size="10" fill="white" text-anchor="middle">44%</text>
-                <text x="174" y="61" font-size="10" fill="white" text-anchor="middle">54%</text><text x="174" y="130" font-size="10" fill="white" text-anchor="middle">37%</text>
-                <text x="243" y="63" font-size="10" fill="white" text-anchor="middle">57%</text><text x="243" y="130" font-size="10" fill="white" text-anchor="middle">37%</text>
-                <text x="312" y="62" font-size="10" fill="white" text-anchor="middle">56%</text><text x="312" y="130" font-size="10" fill="white" text-anchor="middle">35%</text>
-                <text x="381" y="53" font-size="10" fill="white" text-anchor="middle">43%</text><text x="381" y="122" font-size="10" fill="white" text-anchor="middle">52%</text>
-                <polyline points="36,181.4 105,181.4 174,174.8 243,173 312,172.4 381,190.4" stroke="#1e3a8a" stroke-width="2" fill="none"/>
-                <circle cx="36" cy="181.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
-                <circle cx="105" cy="181.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
-                <circle cx="174" cy="174.8" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
-                <circle cx="243" cy="173" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
-                <circle cx="312" cy="172.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
-                <circle cx="381" cy="190.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
-                <text x="36" y="176" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+6</text>
-                <text x="105" y="176" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+6</text>
-                <text x="174" y="170" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+17</text>
-                <text x="243" y="168" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+20</text>
-                <text x="312" y="167" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+21</text>
-                <text x="381" y="185" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">-9</text>
-                <text x="36" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">348</text>
-                <text x="105" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">420</text>
-                <text x="174" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">359</text>
-                <text x="243" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">467</text>
-                <text x="312" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">388</text>
-                <text x="381" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">183*</text>
-                <text x="36" y="220" font-size="10" fill="#64748b" text-anchor="middle">Dez/25</text>
-                <text x="105" y="220" font-size="10" fill="#64748b" text-anchor="middle">Jan/26</text>
-                <text x="174" y="220" font-size="10" fill="#64748b" text-anchor="middle">Fev/26</text>
-                <text x="243" y="220" font-size="10" fill="#64748b" text-anchor="middle">Mar/26</text>
-                <text x="312" y="220" font-size="10" fill="#64748b" text-anchor="middle">Abr/26</text>
-                <text x="381" y="220" font-size="10" fill="#1e40af" text-anchor="middle" font-weight="600">Mai/26*</text>
-                <rect x="14" y="235" width="8" height="8" fill="#059669" rx="1"/>
-                <text x="26" y="243" font-size="9" fill="#64748b">Promotores</text>
-                <rect x="96" y="235" width="8" height="8" fill="#94a3b8" rx="1"/>
-                <text x="108" y="243" font-size="9" fill="#64748b">Neutros</text>
-                <rect x="160" y="235" width="8" height="8" fill="#be123c" rx="1"/>
-                <text x="172" y="243" font-size="9" fill="#64748b">Detratores</text>
-                <line x1="240" y1="239" x2="258" y2="239" stroke="#1e3a8a" stroke-width="2"/>
-                <text x="262" y="243" font-size="9" fill="#64748b">NPS</text>
+                    <rect x="14" y="22" width="44" height="63.7" fill="#059669"/><rect x="14" y="85.7" width="44" height="11.7" fill="#94a3b8"/><rect x="14" y="97.4" width="44" height="55.9" fill="#be123c"/>
+                    <rect x="83" y="22" width="44" height="65" fill="#059669"/><rect x="83" y="87" width="44" height="7.8" fill="#94a3b8"/><rect x="83" y="94.8" width="44" height="57.2" fill="#be123c"/>
+                    <rect x="152" y="22" width="44" height="70.2" fill="#059669"/><rect x="152" y="92.2" width="44" height="11.7" fill="#94a3b8"/><rect x="152" y="103.9" width="44" height="48.1" fill="#be123c"/>
+                    <rect x="221" y="22" width="44" height="74.1" fill="#059669"/><rect x="221" y="96.1" width="44" height="7.8" fill="#94a3b8"/><rect x="221" y="103.9" width="44" height="48.1" fill="#be123c"/>
+                    <rect x="290" y="22" width="44" height="72.8" fill="#059669"/><rect x="290" y="94.8" width="44" height="10.4" fill="#94a3b8"/><rect x="290" y="105.2" width="44" height="45.5" fill="#be123c"/>
+                    <rect x="359" y="22" width="44" height="55.9" fill="#059669" opacity=".85"/><rect x="359" y="77.9" width="44" height="6.5" fill="#94a3b8" opacity=".85"/><rect x="359" y="84.4" width="44" height="67.6" fill="#be123c" opacity=".85"/>
+                    <text x="36" y="57" font-size="10" fill="white" text-anchor="middle">49%</text><text x="36" y="128" font-size="10" fill="white" text-anchor="middle">43%</text>
+                    <text x="105" y="58" font-size="10" fill="white" text-anchor="middle">50%</text><text x="105" y="126" font-size="10" fill="white" text-anchor="middle">44%</text>
+                    <text x="174" y="61" font-size="10" fill="white" text-anchor="middle">54%</text><text x="174" y="130" font-size="10" fill="white" text-anchor="middle">37%</text>
+                    <text x="243" y="63" font-size="10" fill="white" text-anchor="middle">57%</text><text x="243" y="130" font-size="10" fill="white" text-anchor="middle">37%</text>
+                    <text x="312" y="62" font-size="10" fill="white" text-anchor="middle">56%</text><text x="312" y="130" font-size="10" fill="white" text-anchor="middle">35%</text>
+                    <text x="381" y="53" font-size="10" fill="white" text-anchor="middle">43%</text><text x="381" y="122" font-size="10" fill="white" text-anchor="middle">52%</text>
+                    <polyline points="36,181.4 105,181.4 174,174.8 243,173 312,172.4 381,190.4" stroke="#1e3a8a" stroke-width="2" fill="none"/>
+                    <circle cx="36" cy="181.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                    <circle cx="105" cy="181.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                    <circle cx="174" cy="174.8" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                    <circle cx="243" cy="173" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                    <circle cx="312" cy="172.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                    <circle cx="381" cy="190.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                    <text x="36" y="176" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+6</text>
+                    <text x="105" y="176" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+6</text>
+                    <text x="174" y="170" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+17</text>
+                    <text x="243" y="168" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+20</text>
+                    <text x="312" y="167" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+21</text>
+                    <text x="381" y="185" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">-9</text>
+                    <text x="36" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">348</text>
+                    <text x="105" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">420</text>
+                    <text x="174" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">359</text>
+                    <text x="243" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">467</text>
+                    <text x="312" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">388</text>
+                    <text x="381" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">183*</text>
+                    <text x="36" y="220" font-size="10" fill="#64748b" text-anchor="middle">Dez/25</text>
+                    <text x="105" y="220" font-size="10" fill="#64748b" text-anchor="middle">Jan/26</text>
+                    <text x="174" y="220" font-size="10" fill="#64748b" text-anchor="middle">Fev/26</text>
+                    <text x="243" y="220" font-size="10" fill="#64748b" text-anchor="middle">Mar/26</text>
+                    <text x="312" y="220" font-size="10" fill="#64748b" text-anchor="middle">Abr/26</text>
+                    <text x="381" y="220" font-size="10" fill="#1e40af" text-anchor="middle" font-weight="600">Mai/26*</text>
+                    <rect x="14" y="235" width="8" height="8" fill="#059669" rx="1"/>
+                    <text x="26" y="243" font-size="9" fill="#64748b">Promotores</text>
+                    <rect x="96" y="235" width="8" height="8" fill="#94a3b8" rx="1"/>
+                    <text x="108" y="243" font-size="9" fill="#64748b">Neutros</text>
+                    <rect x="160" y="235" width="8" height="8" fill="#be123c" rx="1"/>
+                    <text x="172" y="243" font-size="9" fill="#64748b">Detratores</text>
+                    <line x1="240" y1="239" x2="258" y2="239" stroke="#1e3a8a" stroke-width="2"/>
+                    <text x="262" y="243" font-size="9" fill="#64748b">NPS</text>
                 </svg>
                 <p style="font-size:10px;color:#94a3b8;margin-top:6px">* MTD — dados parciais do mês em curso</p>
             </div>
             <div class="card">
                 <div class="card-title">NPS por Cobertura — Mai/26</div>
-                <div class="cov-grid" style="grid-template-columns:1fr 1fr;gap:8px">
-                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
-                        <div style="font-weight:700;color:#1e293b;font-size:13px">DIT</div>
-                        <div style="font-size:20px;font-weight:800;color:#b91c1c">-12</div>
-                        <div style="font-size:10px;color:#64748b">119 resp. · -35pp</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+                    <div style="background:#fef2f2;border-radius:8px;padding:14px;text-align:center">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px;margin-bottom:6px">DIT</div>
+                        <div style="font-size:28px;font-weight:800;color:#b91c1c">-12</div>
+                        <div style="font-size:10px;color:#64748b;margin-top:4px">119 resp. · -35pp vs Abr/26</div>
                     </div>
-                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
-                        <div style="font-weight:700;color:#1e293b;font-size:13px">DMHO</div>
-                        <div style="font-size:20px;font-weight:800;color:#b91c1c">-4</div>
-                        <div style="font-size:10px;color:#64748b">28 resp. · -31pp</div>
+                    <div style="background:#fef2f2;border-radius:8px;padding:14px;text-align:center">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px;margin-bottom:6px">DMHO</div>
+                        <div style="font-size:28px;font-weight:800;color:#b91c1c">-4</div>
+                        <div style="font-size:10px;color:#64748b;margin-top:4px">28 resp. · -31pp vs Abr/26</div>
                     </div>
-                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
-                        <div style="font-weight:700;color:#1e293b;font-size:13px">IPA</div>
-                        <div style="font-size:20px;font-weight:800;color:#b91c1c">-3</div>
-                        <div style="font-size:10px;color:#64748b">35 resp. · -9pp</div>
+                    <div style="background:#fef2f2;border-radius:8px;padding:14px;text-align:center">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px;margin-bottom:6px">IPA</div>
+                        <div style="font-size:28px;font-weight:800;color:#b91c1c">-3</div>
+                        <div style="font-size:10px;color:#64748b;margin-top:4px">35 resp. · -9pp vs Abr/26</div>
                     </div>
-                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
-                        <div style="font-weight:700;color:#1e293b;font-size:13px">Aux. Gestação</div>
-                        <div style="font-size:20px;font-weight:800;color:#64748b">0</div>
-                        <div style="font-size:10px;color:#64748b">0 resp.</div>
+                    <div style="background:#f8fafc;border-radius:8px;padding:14px;text-align:center">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px;margin-bottom:6px">Aux. Gestação</div>
+                        <div style="font-size:28px;font-weight:800;color:#64748b">0</div>
+                        <div style="font-size:10px;color:#64748b;margin-top:4px">0 resp.</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card" style="background:#1e293b;color:white">
-            <div style="font-size:18px;font-weight:700;margin-bottom:8px">📊 NPS Painel — Dados Frescos Mai/26</div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px">
-                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
-                    <div style="font-size:28px;font-weight:800;color:#fca5a5">-9</div>
-                    <div style="font-size:11px;color:#cbd5e1">NPS Geral Mai/26</div>
-                </div>
-                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
-                    <div style="font-size:28px;font-weight:800;color:#86efac">183</div>
-                    <div style="font-size:11px;color:#cbd5e1">Respondentes MTD</div>
-                </div>
-                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
-                    <div style="font-size:28px;font-weight:800;color:#86efac">43%</div>
-                    <div style="font-size:11px;color:#cbd5e1">Promotores</div>
-                </div>
-                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
-                    <div style="font-size:28px;font-weight:800;color:#fca5a5">52%</div>
-                    <div style="font-size:11px;color:#cbd5e1">Detratores</div>
-                </div>
+        <div style="width:100%;margin-top:0;background:white;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:16px">
+            <div style="background:#1e293b;color:white;padding:20px">
+                <div style="font-size:18px;font-weight:700;margin-bottom:4px">Temas de Comentários — Visão MTD | Últimos 6 Meses</div>
+                <div style="font-size:12px;color:#cbd5e1">Critério MTD: data de disparo ≤ dia 23 de cada mês · Período: últimos 6 meses</div>
             </div>
-            <div style="margin-top:16px;font-size:11px;color:#94a3b8;text-align:center">
-                Dados atualizados até 23/05/2026 · Cache atualizado em 29/05/2026 · Toqan Agent
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">Temas de Comentários — Mai/26 MTD</div>
-            <table style="width:100%;border-collapse:collapse;font-size:13px">
-                <thead>
-                    <tr style="background:#f1f5f9">
-                        <th style="padding:8px;text-align:left;border:1px solid #e2e8f0">Tema</th>
-                        <th style="padding:8px;text-align:center;border:1px solid #e2e8f0">Mai/26</th>
-                        <th style="padding:8px;text-align:center;border:1px solid #e2e8f0">Abr/26</th>
-                        <th style="padding:8px;text-align:center;border:1px solid #e2e8f0">Variação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Suporte / Atendimento</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">30.5%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">34.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">-3.6pp ▼</td></tr>
-                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Demora / Prazo</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">24.3%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">22.2%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#94a3b8">~estável</td></tr>
-                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Valor / Indenização</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">15.8%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">16.4%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">-3.3pp ▼</td></tr>
-                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Processo / Burocracia</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">14.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">10.6%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#dc2626">+4.3pp ▲</td></tr>
-                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Documentação / Envio</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">10.2%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">9.5%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#94a3b8">~estável</td></tr>
-                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Acompanhamento</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">5.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">7.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#94a3b8">~estável</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="card">
-            <div class="card-title">📋 Análise Qualitativa — Comentários Detratores (Mai/26)</div>
-            <div style="margin-bottom:16px">
-                <div class="section-title section-detratores">⚠️ Detratores — Principais Insatisfações</div>
-                <div class="comment">
-                    <div class="comment-meta">DIT · Detrator · 09/05/2026</div>
-                    <div class="comment-text">"Faz mais de 30 dias que abri o sinistro e ainda não recebi resposta. Péssimo atendimento, ninguém responde."</div>
+            <div style="padding:20px 24px 24px">
+                <div style="display:grid;grid-template-columns:240px repeat(6,minmax(120px,1fr));gap:8px;margin-bottom:16px">
+                    <div></div>
+                    <div style="text-align:center;border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc"><div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">dez./25</div><div style="font-size:18px;font-weight:700;background:#fef3c7;color:#92400e;padding:3px 6px;border-radius:4px;display:inline-block">+6</div><div style="font-size:10px;color:#64748b;margin-top:4px">348 resp.</div></div>
+                    <div style="text-align:center;border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc"><div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">jan./26</div><div style="font-size:18px;font-weight:700;background:#fef3c7;color:#92400e;padding:3px 6px;border-radius:4px;display:inline-block">+7</div><div style="font-size:10px;color:#64748b;margin-top:4px">420 resp.</div></div>
+                    <div style="text-align:center;border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc"><div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">fev./26</div><div style="font-size:18px;font-weight:700;background:#fef3c7;color:#92400e;padding:3px 6px;border-radius:4px;display:inline-block">+18</div><div style="font-size:10px;color:#64748b;margin-top:4px">359 resp.</div></div>
+                    <div style="text-align:center;border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc"><div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">mar./26</div><div style="font-size:18px;font-weight:700;background:#fef3c7;color:#92400e;padding:3px 6px;border-radius:4px;display:inline-block">+20</div><div style="font-size:10px;color:#64748b;margin-top:4px">467 resp.</div></div>
+                    <div style="text-align:center;border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc"><div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">abr./26</div><div style="font-size:18px;font-weight:700;background:#fef3c7;color:#92400e;padding:3px 6px;border-radius:4px;display:inline-block">+21</div><div style="font-size:10px;color:#64748b;margin-top:4px">388 resp.</div></div>
+                    <div style="text-align:center;border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc;border:2px solid #94a3b8"><div style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">mai./26</div><div style="font-size:18px;font-weight:700;background:#fecaca;color:#991b1b;padding:3px 6px;border-radius:4px;display:inline-block">-9</div><div style="font-size:10px;color:#64748b;margin-top:4px">183 resp.*</div></div>
                 </div>
-                <div class="comment">
-                    <div class="comment-meta">DIT · Detrator · 12/05/2026</div>
-                    <div class="comment-text">"Mandei todos os documentos e disseram que estava faltando algo. Tive que mandar 3 vezes a mesma coisa. Processo muito burocrático."</div>
+                <div style="overflow-x:auto">
+                    <table style="width:100%;min-width:900px;border-collapse:collapse;font-size:13px">
+                        <thead>
+                            <tr style="background:#f1f5f9">
+                                <th style="padding:10px;text-align:left;border:1px solid #e2e8f0;width:220px">Tema</th>
+                                <th style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#475569;font-weight:600">dez./25</th>
+                                <th style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#475569;font-weight:600">jan./26</th>
+                                <th style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#475569;font-weight:600">fev./26</th>
+                                <th style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#475569;font-weight:600">mar./26</th>
+                                <th style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#475569;font-weight:600">abr./26</th>
+                                <th style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#475569;font-weight:600;border-left:2px solid #94a3b8">mai./26</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding:10px;border:1px solid #e2e8f0"><div style="font-weight:600">Sem Suporte / Atendimento</div><div style="font-size:11px;color:#059669">-3.6pp ▼</div><button onclick="abrirModal('Suporte e atendimento')" style="margin-top:4px;background:#e2e8f0;color:#475569;border:none;padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer">ver exemplos</button></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">34.7%</div><div style="font-size:10px;color:#64748b">(117)</div><div style="margin-top:4px;display:flex;height:5px;border-radius:3px;overflow:hidden"><div style="width:29%;background:#ef4444"></div><div style="width:71%;background:#10b981"></div></div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">31.4%</div><div style="font-size:10px;color:#64748b">(127)</div><div style="margin-top:4px;display:flex;height:5px;border-radius:3px;overflow:hidden"><div style="width:27%;background:#ef4444"></div><div style="width:73%;background:#10b981"></div></div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">36.2%</div><div style="font-size:10px;color:#64748b">(126)</div><div style="margin-top:4px;display:flex;height:5px;border-radius:3px;overflow:hidden"><div style="width:22%;background:#ef4444"></div><div style="width:78%;background:#10b981"></div></div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">34.1%</div><div style="font-size:10px;color:#64748b">(157)</div><div style="margin-top:4px;display:flex;height:5px;border-radius:3px;overflow:hidden"><div style="width:22%;background:#ef4444"></div><div style="width:78%;background:#10b981"></div></div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">34.3%</div><div style="font-size:10px;color:#64748b">(130)</div><div style="margin-top:4px;display:flex;height:5px;border-radius:3px;overflow:hidden"><div style="width:20%;background:#ef4444"></div><div style="width:80%;background:#10b981"></div></div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center;border-left:2px solid #94a3b8"><div style="font-weight:700">30.5%</div><div style="font-size:10px;color:#64748b">(54)</div><div style="margin-top:4px;display:flex;height:5px;border-radius:3px;overflow:hidden"><div style="width:38%;background:#ef4444"></div><div style="width:62%;background:#10b981"></div></div></td></tr>
+                            <tr><td style="padding:10px;border:1px solid #e2e8f0"><div style="font-weight:600">Demora / Prazo</div><div style="font-size:11px;color:#9ca3af">~estável</div><button onclick="abrirModal('Tempo de análise')" style="margin-top:4px;background:#e2e8f0;color:#475569;border:none;padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer">ver exemplos</button></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">20.2%</div><div style="font-size:10px;color:#64748b">(68)</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">21.0%</div><div style="font-size:10px;color:#64748b">(85)</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">20.7%</div><div style="font-size:10px;color:#64748b">(72)</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">22.6%</div><div style="font-size:10px;color:#64748b">(104)</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">22.2%</div><div style="font-size:10px;color:#64748b">(84)</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center;border-left:2px solid #94a3b8"><div style="font-weight:700">24.3%</div><div style="font-size:10px;color:#64748b">(43)</div></td></tr>
+                            <tr><td style="padding:10px;border:1px solid #e2e8f0"><div style="font-weight:600">Valor / Indenização</div><div style="font-size:11px;color:#059669">-3.3pp ▼</div><button onclick="abrirModal('Valor recebido')" style="margin-top:4px;background:#e2e8f0;color:#475569;border:none;padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer">ver exemplos</button></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">22.0%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">21.0%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">17.0%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">19.3%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">16.4%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center;border-left:2px solid #94a3b8"><div style="font-weight:700">15.8%</div></td></tr>
+                            <tr><td style="padding:10px;border:1px solid #e2e8f0"><div style="font-weight:600">Processo / Burocracia</div><div style="font-size:11px;color:#dc2626">+4.3pp ▲</div><button onclick="abrirModal('Processo de abertura')" style="margin-top:4px;background:#e2e8f0;color:#475569;border:none;padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer">ver exemplos</button></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">8.9%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">11.6%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">9.5%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">8.5%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">10.6%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center;border-left:2px solid #94a3b8"><div style="font-weight:700">14.1%</div></td></tr>
+                            <tr><td style="padding:10px;border:1px solid #e2e8f0"><div style="font-weight:600">Documentação / Envio</div><div style="font-size:11px;color:#9ca3af">~estável</div><button onclick="abrirModal('Comunicações sobre o processo')" style="margin-top:4px;background:#e2e8f0;color:#475569;border:none;padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer">ver exemplos</button></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">8.0%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">8.9%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">10.6%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">10.0%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">9.5%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center;border-left:2px solid #94a3b8"><div style="font-weight:700">10.2%</div></td></tr>
+                            <tr><td style="padding:10px;border:1px solid #e2e8f0"><div style="font-weight:600">Acompanhamento</div><div style="font-size:11px;color:#9ca3af">~estável</div><button onclick="abrirModal('Acompanhamento do processo')" style="margin-top:4px;background:#e2e8f0;color:#475569;border:none;padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer">ver exemplos</button></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">6.2%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">6.2%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#f0fdf4;text-align:center"><div style="font-weight:700">6.0%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center"><div style="font-weight:700">5.4%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fffbeb;text-align:center"><div style="font-weight:700">7.1%</div></td><td style="padding:8px;border:1px solid #e2e8f0;background:#fef2f2;text-align:center;border-left:2px solid #94a3b8"><div style="font-weight:700">5.1%</div></td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="comment">
-                    <div class="comment-meta">DMHO · Detrator · 15/05/2026</div>
-                    <div class="comment-text">"Não entendo por que demorou tanto para processar meu sinistro. Precisava do dinheiro e fiquei esperando semanas."</div>
+                <div style="background:#fffbeb;border-left:4px solid #f59e0b;padding:14px;margin-top:16px;border-radius:4px">
+                    <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📊 Leitura do quadro</div>
+                    <div style="font-size:12px;color:#78350f;line-height:1.6">
+                        <p style="margin:0 0 6px 0">No mês atual, o tema com maior incidência foi <strong>Sem Suporte / Atendimento</strong> (30.5% dos comentários).</p>
+                        <p style="margin:0">O tema <strong>Processo / Burocracia</strong> teve a maior variação (+4.3pp vs média dos 5 meses anteriores), indicando movimento significativo na percepção dos entregadores.</p>
+                    </div>
                 </div>
-                <div class="comment">
-                    <div class="comment-meta">DIT · Detrator · 18/05/2026</div>
-                    <div class="comment-text">"O valor pago foi muito abaixo do que eu esperava. A cobertura não ficou clara no momento da contratação."</div>
+                <div style="margin-top:12px;font-size:10px;color:#94a3b8;text-align:center">
+                    Fonte: NPS Base Full Metlife · Base: respondidos MTD · Método: tabulação de q2_multipla_escolha · * dados parciais
                 </div>
-                <div class="comment">
-                    <div class="comment-meta">IPA · Detrator · 20/05/2026</div>
-                    <div class="comment-text">"Difícil de acompanhar o status do sinistro. Não recebi nenhuma atualização automática, tive que ficar ligando."</div>
-                </div>
-            </div>
-            <div>
-                <div class="section-title section-promotores">✅ Promotores — O que está funcionando</div>
-                <div class="comment">
-                    <div class="comment-meta">DIT · Promotor · 07/05/2026</div>
-                    <div class="comment-text">"Processo muito rápido! Abri o sinistro e em menos de 1 semana recebi o pagamento. Excelente!"</div>
-                </div>
-                <div class="comment">
-                    <div class="comment-meta">IPA · Promotor · 11/05/2026</div>
-                    <div class="comment-text">"Atendimento muito atencioso. A moça que me atendeu explicou tudo direitinho e resolveu meu problema."</div>
-                </div>
-                <div class="comment">
-                    <div class="comment-meta">DMHO · Promotor · 14/05/2026</div>
-                    <div class="comment-text">"Super fácil de acionar o seguro pelo app. Muito prático e rápido. Recomendo para todos."</div>
-                </div>
-                <div class="comment">
-                    <div class="comment-meta">DIT · Promotor · 21/05/2026</div>
-                    <div class="comment-text">"Nunca precisei usar um seguro antes e fiquei com medo do processo, mas foi muito mais simples do que imaginei."</div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-title">📈 Análise por Jornada — Mai/26</div>
-            <div style="overflow-x:auto">
-                <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px">
-                    <thead>
-                        <tr style="background:#f1f5f9">
-                            <th style="padding:8px;text-align:left;border:1px solid #e2e8f0;font-weight:700">Etapa da Jornada</th>
-                            <th style="padding:8px;text-align:center;border:1px solid #e2e8f0;font-weight:700">NPS</th>
-                            <th style="padding:8px;text-align:center;border:1px solid #e2e8f0;font-weight:700">Resp.</th>
-                            <th style="padding:8px;text-align:center;border:1px solid #e2e8f0;font-weight:700">Prom%</th>
-                            <th style="padding:8px;text-align:center;border:1px solid #e2e8f0;font-weight:700">Det%</th>
-                            <th style="padding:8px;text-align:left;border:1px solid #e2e8f0;font-weight:700">Principal Reclamação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-weight:600">Abertura do Sinistro</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;font-weight:700;color:#059669">+15</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center">42</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">55%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#be123c">40%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-size:11px">Dificuldade no envio de documentos</td>
-                        </tr>
-                        <tr style="background:#fafafa">
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-weight:600">Análise / Instrução</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;font-weight:700;color:#b91c1c">-22</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center">58</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">36%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#be123c">58%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-size:11px">Demora no retorno / sem comunicação</td>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-weight:600">Pagamento / Encerramento</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;font-weight:700;color:#b91c1c">-18</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center">48</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">38%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#be123c">56%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-size:11px">Valor abaixo do esperado</td>
-                        </tr>
-                        <tr style="background:#fafafa">
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-weight:600">Pós-Sinistro</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;font-weight:700;color:#94a3b8">+2</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center">35</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">48%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#be123c">46%</td>
-                            <td style="padding:8px;border:1px solid #e2e8f0;font-size:11px">Falta de acompanhamento proativo</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
@@ -301,15 +202,30 @@
                 <h3 id="modal-titulo">Comentários</h3>
                 <span class="modal-close" onclick="fecharModal()">&times;</span>
             </div>
-            <div class="modal-body" id="modal-body">
-                <p style="font-size:12px;color:#94a3b8">Selecione um tema na tabela para ver os comentários.</p>
+            <div class="modal-body">
+                <div style="margin-bottom:20px">
+                    <div class="section-title section-promotores">Promotores (nota 9–10)</div>
+                    <div id="modal-promotores"></div>
+                </div>
+                <div>
+                    <div class="section-title section-detratores">Detratores (nota 0–6)</div>
+                    <div id="modal-detratores"></div>
+                </div>
             </div>
         </div>
     </div>
     <script>
-        function fecharModal() {
-            document.getElementById('modal').classList.remove('active');
+        const COMMENTS_DATA = {"Suporte e atendimento":{"promotores":[{"texto":"Informações claras e precisas e principalmente sem aquelas burocracias terríveis que sempre fizeram parte das seguradoras.","nps":9,"cov":"IPA","mes":"mai./26"},{"texto":"Fui bem atendido","nps":10,"cov":"DMHO","mes":"mai./26"},{"texto":"A atenção que foi dada","nps":9,"cov":"DIT","mes":"mai./26"},{"texto":"Muito bom","nps":10,"cov":"DIT","mes":"mai./26"}],"detratores":[{"texto":"Demorava","nps":5,"cov":"IPA","mes":"mai./26"},{"texto":"Péssimo atendimento, pior tempo de análise, processo de abertura insalubre, péssima comunicação sobre o processo. Jamais assinaria um seguro assim.","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Eu não consegui ainda abrir nenhum","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Sofri um acidente de moto, onde veio a romper o ligamento do cruzado anterior e lesão do menisco. Hoje estou sem trabalhar a 4 meses não recebi nenhum suporte.","nps":0,"cov":"DIT","mes":"mai./26"}]},"Valor recebido":{"promotores":[{"texto":"Nada","nps":10,"cov":"IPA","mes":"mai./26"},{"texto":"Recebi uma quantia, mas foi o mínimo, ainda fiquei no prejuízo.","nps":9,"cov":"DIT","mes":"mai./25"},{"texto":"Tempo de análise, Atendimento, Valor pago","nps":10,"cov":"DIT","mes":"mai./25"}],"detratores":[{"texto":"Não recebi","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Me depositaram um valor que não condiz com que fala no aplicativo do iFood.","nps":2,"cov":"DMHO","mes":"mai./26"},{"texto":"Perde parte de um dedo e recebe 3600 reais. É isso que a vida do entregador vale para o ifood.","nps":0,"cov":"IPA","mes":"mai./26"}]},"Processo de abertura":{"promotores":[{"texto":"Simplicidade no andamento","nps":10,"cov":"DIT","mes":"mai./26"},{"texto":"Muito obrigado bom atendimento rápido","nps":10,"cov":"IPA","mes":"mai./26"},{"texto":"Fácil e rápido","nps":10,"cov":"DIT","mes":"mai./26"}],"detratores":[{"texto":"Não fui bem atendido. Negaram meu seguro, eu com atestado médico de 7 + 2 dias.","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Não consegui enviar meus documentos, 2 dias tentando.","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Processo burocrático, sem respeito nenhum ao entregador.","nps":1,"cov":"DIT","mes":"mai./26"}]},"Tempo de análise":{"promotores":[{"texto":"Muito bom","nps":10,"cov":"DMHO","mes":"mai./26"},{"texto":"Achei bem rápido a resolução da análise.","nps":9,"cov":"DIT","mes":"mai./26"},{"texto":"Foi muito rápido o processo e a finalização também","nps":9,"cov":"IPA","mes":"mai./26"}],"detratores":[{"texto":"Meu pedido de seguro não foi aceito por não estar em rota na hora do acidente, sendo que fiz várias entregas durante o dia.","nps":1,"cov":"DIT","mes":"mai./26"},{"texto":"Muita demora pra mandar documentos","nps":3,"cov":"DMHO","mes":"mai./26"},{"texto":"Sofri o acidente, até agora não recebi valor nenhum.","nps":0,"cov":"DIT","mes":"mai./26"}]},"Comunicações sobre o processo":{"promotores":[{"texto":"A MetLife juntamente com o iFood me notificou em todo tempo sobre o processo fazendo com que eu tivesse ciência de tudo","nps":9,"cov":"IPA","mes":"mai./26"},{"texto":"Fui muito bem atendida, informada.","nps":10,"cov":"IPA","mes":"mai./25"}],"detratores":[{"texto":"Todas as vezes que entrei em contato, os atendentes foram horríveis, sempre uma informação diferente da anterior.","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Fiquei uma semana enviando e reenviando documentação, e só fiquei sabendo que não ia receber 40 dias depois.","nps":0,"cov":"DIT","mes":"mai./26"}]},"Acompanhamento do processo":{"promotores":[{"texto":"O acompanhamento com médico especialista","nps":9,"cov":"IPA","mes":"mai./26"},{"texto":"A atenção que me foi dada durante todo o processo!","nps":10,"cov":"IPA","mes":"jun./25"}],"detratores":[{"texto":"Até hoje não consegui os benefícios","nps":0,"cov":"DIT","mes":"mai./26"},{"texto":"Não tive bons retornos após meus 3 meses de recuperação.","nps":4,"cov":"IPA","mes":"mai./25"}]}};
+        function abrirModal(tema) {
+            document.getElementById('modal-titulo').textContent = tema;
+            const data = COMMENTS_DATA[tema] || {promotores:[],detratores:[]};
+            const pDiv = document.getElementById('modal-promotores');
+            const dDiv = document.getElementById('modal-detratores');
+            pDiv.innerHTML = data.promotores.length === 0 ? '<p style="font-size:12px;color:#94a3b8">Nenhum comentário.</p>' : data.promotores.map(c=>`<div class="comment"><div class="comment-meta">NPS ${c.nps} · ${c.cov} · ${c.mes}</div><div class="comment-text">${c.texto}</div></div>`).join('');
+            dDiv.innerHTML = data.detratores.length === 0 ? '<p style="font-size:12px;color:#94a3b8">Nenhum comentário.</p>' : data.detratores.map(c=>`<div class="comment"><div class="comment-meta">NPS ${c.nps} · ${c.cov} · ${c.mes}</div><div class="comment-text">${c.texto}</div></div>`).join('');
+            document.getElementById('modal').classList.add('active');
         }
+        function fecharModal() { document.getElementById('modal').classList.remove('active'); }
     </script>
 </body>
 </html>
