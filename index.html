@@ -1,1 +1,219 @@
-PLACEHOLDER_CONTENT
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel NPS MetLife × iFood</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#f1f5f9; color:#1e293b; }
+        header { background:linear-gradient(135deg,#1e293b,#334155); color:white; padding:20px; text-align:center; }
+        header h1 { font-size:20px; font-weight:700; margin-bottom:4px; }
+        header p { font-size:11px; opacity:.9; }
+        .container { max-width:1200px; margin:20px auto; padding:0 16px; }
+        .card { background:white; border-radius:8px; padding:16px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+        .card-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#64748b; margin-bottom:12px; }
+        .big-stat { text-align:center; padding:12px; }
+        .big-stat .valor { font-size:42px; font-weight:800; color:#1e40af; margin-bottom:4px; }
+        .big-stat .label { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#64748b; }
+        .big-stat .delta { font-size:13px; margin-top:4px; }
+        .delta.positivo { color:#059669; }
+        .delta.negativo { color:#b91c1c; }
+        .distribuicao { display:flex; gap:8px; margin-top:12px; }
+        .dist-item { flex:1; text-align:center; padding:8px; background:#f1f5f9; border-radius:6px; }
+        .dist-item .pct { font-size:16px; font-weight:700; margin-bottom:2px; }
+        .dist-item .label { font-size:10px; color:#64748b; }
+        .prom { color:#059669; }
+        .neu { color:#94a3b8; }
+        .det { color:#be123c; }
+        .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .cov-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:16px; }
+        .cov-card { background:white; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+        .cov-title { font-size:13px; font-weight:700; color:#1e293b; margin-bottom:8px; }
+        .cov-stats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; font-size:12px; }
+        .cov-stats .nps { font-weight:700; color:#1e40af; }
+        .cov-stats .delta { font-size:11px; }
+        .cov-legend { display:flex; gap:10px; margin-top:6px; font-size:10px; color:#64748b; }
+        .cov-legend span { display:flex; align-items:center; gap:3px; }
+        .cov-legend .dot { display:inline-block; width:8px; height:8px; border-radius:2px; }
+        .tabul-list { list-style:none; }
+        .tabul-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9; }
+        .tabul-item:last-child { border-bottom:none; }
+        .btn { display:inline-block; padding:6px 12px; background:#1e40af; color:white; border:none; border-radius:6px; font-size:11px; cursor:pointer; }
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000; }
+        .modal.active { display:flex; align-items:center; justify-content:center; }
+        .modal-content { background:white; border-radius:8px; max-width:600px; width:90%; max-height:80vh; display:flex; flex-direction:column; }
+        .modal-header { padding:16px 24px; border-bottom:1px solid #e2e8f0; }
+        .modal-header h3 { font-size:14px; font-weight:700; color:#1e293b; }
+        .modal-body { padding:16px 24px; overflow-y:auto; flex:1; }
+        .modal-close { position:absolute; top:16px; right:24px; font-size:24px; cursor:pointer; color:#64748b; }
+        .comment { margin-bottom:12px; padding:10px; background:#f1f5f9; border-left:3px solid #1e40af; border-radius:4px; }
+        .comment-meta { font-size:10px; color:#64748b; margin-bottom:4px; }
+        .comment-text { font-size:12px; color:#1e293b; }
+        .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; padding:6px 10px; border-radius:6px; }
+        .section-promotores { color:#059669; background:#f0fdf4; }
+        .section-detratores { color:#be123c; background:#fff1f2; }
+        .cov-stats .nps { font-weight:700; color:#1e40af; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Painel NPS MetLife × iFood</h1>
+        <p>Dados disponíveis até 23/05/2026 &nbsp;·&nbsp; Mai/26 MTD</p>
+    </header>
+    <div class="container">
+        <div class="card">
+            <div class="card-title">Visão Geral</div>
+            <div class="big-stat">
+                <div class="valor">-9</div>
+                <div class="label">NPS Mai/26</div>
+                <div class="delta negativo">-30 vs Abr/26</div>
+            </div>
+            <div class="distribuicao">
+                <div class="dist-item"><div class="pct prom">43%</div><div class="label">Promotores</div></div>
+                <div class="dist-item"><div class="pct neu">5%</div><div class="label">Neutros</div></div>
+                <div class="dist-item"><div class="pct det">52%</div><div class="label">Detratores</div></div>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-title">Tendência MoM (últimos 6 meses)</div>
+                <svg viewBox="0 0 420 255" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:255px;display:block">
+                <rect x="14" y="22" width="44" height="63.7" fill="#059669"/><rect x="14" y="85.7" width="44" height="11.7" fill="#94a3b8"/><rect x="14" y="97.4" width="44" height="55.9" fill="#be123c"/>
+                <rect x="83" y="22" width="44" height="65" fill="#059669"/><rect x="83" y="87" width="44" height="7.8" fill="#94a3b8"/><rect x="83" y="94.8" width="44" height="57.2" fill="#be123c"/>
+                <rect x="152" y="22" width="44" height="70.2" fill="#059669"/><rect x="152" y="92.2" width="44" height="11.7" fill="#94a3b8"/><rect x="152" y="103.9" width="44" height="48.1" fill="#be123c"/>
+                <rect x="221" y="22" width="44" height="74.1" fill="#059669"/><rect x="221" y="96.1" width="44" height="7.8" fill="#94a3b8"/><rect x="221" y="103.9" width="44" height="48.1" fill="#be123c"/>
+                <rect x="290" y="22" width="44" height="72.8" fill="#059669"/><rect x="290" y="94.8" width="44" height="10.4" fill="#94a3b8"/><rect x="290" y="105.2" width="44" height="45.5" fill="#be123c"/>
+                <rect x="359" y="22" width="44" height="55.9" fill="#059669" opacity=".85"/><rect x="359" y="77.9" width="44" height="6.5" fill="#94a3b8" opacity=".85"/><rect x="359" y="84.4" width="44" height="67.6" fill="#be123c" opacity=".85"/>
+                <text x="36" y="57" font-size="10" fill="white" text-anchor="middle">49%</text><text x="36" y="128" font-size="10" fill="white" text-anchor="middle">43%</text>
+                <text x="105" y="58" font-size="10" fill="white" text-anchor="middle">50%</text><text x="105" y="126" font-size="10" fill="white" text-anchor="middle">44%</text>
+                <text x="174" y="61" font-size="10" fill="white" text-anchor="middle">54%</text><text x="174" y="130" font-size="10" fill="white" text-anchor="middle">37%</text>
+                <text x="243" y="63" font-size="10" fill="white" text-anchor="middle">57%</text><text x="243" y="130" font-size="10" fill="white" text-anchor="middle">37%</text>
+                <text x="312" y="62" font-size="10" fill="white" text-anchor="middle">56%</text><text x="312" y="130" font-size="10" fill="white" text-anchor="middle">35%</text>
+                <text x="381" y="53" font-size="10" fill="white" text-anchor="middle">43%</text><text x="381" y="122" font-size="10" fill="white" text-anchor="middle">52%</text>
+                <polyline points="36,181.4 105,181.4 174,174.8 243,173 312,172.4 381,190.4" stroke="#1e3a8a" stroke-width="2" fill="none"/>
+                <circle cx="36" cy="181.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                <circle cx="105" cy="181.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                <circle cx="174" cy="174.8" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                <circle cx="243" cy="173" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                <circle cx="312" cy="172.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                <circle cx="381" cy="190.4" r="3.5" fill="#1e3a8a" stroke="white" stroke-width="1.5"/>
+                <text x="36" y="176" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+6</text>
+                <text x="105" y="176" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+6</text>
+                <text x="174" y="170" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+17</text>
+                <text x="243" y="168" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+20</text>
+                <text x="312" y="167" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">+21</text>
+                <text x="381" y="185" font-size="9" fill="#1e3a8a" text-anchor="middle" font-weight="bold">-9</text>
+                <text x="36" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">348</text>
+                <text x="105" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">420</text>
+                <text x="174" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">359</text>
+                <text x="243" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">467</text>
+                <text x="312" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">388</text>
+                <text x="381" y="205" font-size="9" fill="#94a3b8" text-anchor="middle">183*</text>
+                <text x="36" y="220" font-size="10" fill="#64748b" text-anchor="middle">Dez/25</text>
+                <text x="105" y="220" font-size="10" fill="#64748b" text-anchor="middle">Jan/26</text>
+                <text x="174" y="220" font-size="10" fill="#64748b" text-anchor="middle">Fev/26</text>
+                <text x="243" y="220" font-size="10" fill="#64748b" text-anchor="middle">Mar/26</text>
+                <text x="312" y="220" font-size="10" fill="#64748b" text-anchor="middle">Abr/26</text>
+                <text x="381" y="220" font-size="10" fill="#1e40af" text-anchor="middle" font-weight="600">Mai/26*</text>
+                <rect x="14" y="235" width="8" height="8" fill="#059669" rx="1"/>
+                <text x="26" y="243" font-size="9" fill="#64748b">Promotores</text>
+                <rect x="96" y="235" width="8" height="8" fill="#94a3b8" rx="1"/>
+                <text x="108" y="243" font-size="9" fill="#64748b">Neutros</text>
+                <rect x="160" y="235" width="8" height="8" fill="#be123c" rx="1"/>
+                <text x="172" y="243" font-size="9" fill="#64748b">Detratores</text>
+                <line x1="240" y1="239" x2="258" y2="239" stroke="#1e3a8a" stroke-width="2"/>
+                <text x="262" y="243" font-size="9" fill="#64748b">NPS</text>
+                </svg>
+                <p style="font-size:10px;color:#94a3b8;margin-top:6px">* MTD — dados parciais do mês em curso</p>
+            </div>
+            <div class="card">
+                <div class="card-title">NPS por Cobertura — Mai/26</div>
+                <div class="cov-grid" style="grid-template-columns:1fr 1fr;gap:8px">
+                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px">DIT</div>
+                        <div style="font-size:20px;font-weight:800;color:#b91c1c">-12</div>
+                        <div style="font-size:10px;color:#64748b">119 resp. · -35pp</div>
+                    </div>
+                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px">DMHO</div>
+                        <div style="font-size:20px;font-weight:800;color:#b91c1c">-4</div>
+                        <div style="font-size:10px;color:#64748b">28 resp. · -31pp</div>
+                    </div>
+                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px">IPA</div>
+                        <div style="font-size:20px;font-weight:800;color:#b91c1c">-3</div>
+                        <div style="font-size:10px;color:#64748b">35 resp. · -9pp</div>
+                    </div>
+                    <div style="background:#f8fafc;border-radius:6px;padding:10px">
+                        <div style="font-weight:700;color:#1e293b;font-size:13px">Aux. Gestação</div>
+                        <div style="font-size:20px;font-weight:800;color:#64748b">0</div>
+                        <div style="font-size:10px;color:#64748b">0 resp.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="background:#1e293b;color:white">
+            <div style="font-size:18px;font-weight:700;margin-bottom:8px">📊 NPS Painel — Dados Frescos Mai/26</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px">
+                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
+                    <div style="font-size:28px;font-weight:800;color:#fca5a5">-9</div>
+                    <div style="font-size:11px;color:#cbd5e1">NPS Geral Mai/26</div>
+                </div>
+                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
+                    <div style="font-size:28px;font-weight:800;color:#86efac">183</div>
+                    <div style="font-size:11px;color:#cbd5e1">Respondentes MTD</div>
+                </div>
+                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
+                    <div style="font-size:28px;font-weight:800;color:#86efac">43%</div>
+                    <div style="font-size:11px;color:#cbd5e1">Promotores</div>
+                </div>
+                <div style="text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:12px">
+                    <div style="font-size:28px;font-weight:800;color:#fca5a5">52%</div>
+                    <div style="font-size:11px;color:#cbd5e1">Detratores</div>
+                </div>
+            </div>
+            <div style="margin-top:16px;font-size:11px;color:#94a3b8;text-align:center">
+                Dados atualizados até 23/05/2026 · Cache atualizado em 29/05/2026 · Toqan Agent
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Temas de Comentários — Mai/26 MTD</div>
+            <table style="width:100%;border-collapse:collapse;font-size:13px">
+                <thead>
+                    <tr style="background:#f1f5f9">
+                        <th style="padding:8px;text-align:left;border:1px solid #e2e8f0">Tema</th>
+                        <th style="padding:8px;text-align:center;border:1px solid #e2e8f0">Mai/26</th>
+                        <th style="padding:8px;text-align:center;border:1px solid #e2e8f0">Abr/26</th>
+                        <th style="padding:8px;text-align:center;border:1px solid #e2e8f0">Variação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Suporte / Atendimento</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">30.5%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">34.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">-3.6pp ▼</td></tr>
+                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Demora / Prazo</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">24.3%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">22.2%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#94a3b8">~estável</td></tr>
+                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Valor / Indenização</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">15.8%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">16.4%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#059669">-3.3pp ▼</td></tr>
+                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Processo / Burocracia</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">14.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">10.6%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#dc2626">+4.3pp ▲</td></tr>
+                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Documentação / Envio</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">10.2%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">9.5%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#94a3b8">~estável</td></tr>
+                    <tr><td style="padding:8px;border:1px solid #e2e8f0">Acompanhamento</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">5.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">7.1%</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#94a3b8">~estável</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Comentários</h3>
+                <span class="modal-close" onclick="fecharModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <p style="font-size:12px;color:#94a3b8">Selecione um tema na tabela para ver os comentários.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function fecharModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
