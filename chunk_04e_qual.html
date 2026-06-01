@@ -1,0 +1,61 @@
+    <!-- Modal de Comentários -->
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Comentários</h3>
+                <span class="modal-close" onclick="fecharModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom:20px">
+                    <div class="section-title section-promotores">Promotores (nota 9–10)</div>
+                    <div id="modal-promotores"></div>
+                </div>
+                <div>
+                    <div class="section-title section-detratores">Detratores (nota 0–6)</div>
+                    <div id="modal-detratores"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const COMMENTS_DATA = {"Suporte e atendimento": {"promotores": [{"texto": "Informações claras e precisas e principalmente sem aquelas burocracias terríveis que sempre fizeram parte das seguradoras.", "nps": 9, "cov": "IPA", "mes": "mai./26"}, {"texto": "Fui bem atendido", "nps": 10, "cov": "DMHO", "mes": "mai./26"}, {"texto": "A atenção que foi dada", "nps": 9, "cov": "DIT", "mes": "mai./26"}, {"texto": "Muito bom", "nps": 10, "cov": "DIT", "mes": "mai./26"}], "detratores": [{"texto": "Demorava", "nps": 5, "cov": "IPA", "mes": "mai./26"}, {"texto": "Péssimo atendimento, pior tempo de análise, processo de abertura insalubre.", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "Eu não consegui ainda abrir nenhum", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "Sofri um acidente de moto, fiz a entrega dos atestados, mas não aceitaram. Hoje estou sem trabalhar a 4 meses.", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}, "Valor recebido": {"promotores": [{"texto": "Nada", "nps": 10, "cov": "IPA", "mes": "mai./26"}, {"texto": "Recebi uma quantia, mas foi o mínimo, ainda fiquei no prejuízo.", "nps": 9, "cov": "DIT", "mes": "mai./25"}, {"texto": "Tempo de análise  Atendimento  Valor pago", "nps": 10, "cov": "DIT", "mes": "mai./25"}, {"texto": "Muito obrigado  Empresa seria", "nps": 10, "cov": "DIT", "mes": "mai./25"}], "detratores": [{"texto": "Não recebi", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "Y", "nps": 5, "cov": "IPA", "mes": "mai./26"}, {"texto": "Me depositaram um valor que não condiz com que fala no aplicativo do iFood.", "nps": 2, "cov": "DMHO", "mes": "mai./26"}, {"texto": "Não recebi nada", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}, "Processo de abertura": {"promotores": [{"texto": "simplicidade no andamento", "nps": 10, "cov": "DIT", "mes": "mai./26"}, {"texto": "Muito obrigado bom atendimento rápido", "nps": 10, "cov": "IPA", "mes": "mai./26"}], "detratores": [{"texto": "Não fui bem atendido. Negaram meu seguro, eu com atestado médico de 7 + 2 dias.", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "Nap consegui enviar meus documentos 2 dias tentando.", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}, "Tempo de análise": {"promotores": [{"texto": "Muito bom", "nps": 10, "cov": "DMHO", "mes": "mai./26"}, {"texto": "Achei bem rapido a resolução da analise.", "nps": 9, "cov": "DIT", "mes": "mai./26"}], "detratores": [{"texto": "Muita demora pra manda documentos", "nps": 3, "cov": "DMHO", "mes": "mai./26"}, {"texto": "Sofri o acidente até agora não recebi valor nenhum.", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}, "Comunicações sobre o processo": {"promotores": [{"texto": "A met life juntamente com o ifood notificou me em todo tempo sobre o processo.", "nps": 9, "cov": "IPA", "mes": "mai./26"}], "detratores": [{"texto": "Os atendentes foram horríveis, sempre uma informação diferente da anterior.", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}, "Acompanhamento do processo": {"promotores": [{"texto": "O acompanhamento com médico especialista", "nps": 9, "cov": "IPA", "mes": "mai./26"}], "detratores": [{"texto": "Até hoje não consegui ó benefícios", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}};
+        
+        function abrirModal(tema) {
+            document.getElementById('modal-titulo').textContent = tema;
+            const data = COMMENTS_DATA[tema] || {promotores: [], detratores: []};
+            
+            const promDiv = document.getElementById('modal-promotores');
+            const detDiv = document.getElementById('modal-detratores');
+            
+            if (data.promotores.length === 0) {
+                promDiv.innerHTML = '<p style="font-size:12px;color:#94a3b8">Nenhum comentário de promotores nesta categoria.</p>';
+            } else {
+                promDiv.innerHTML = data.promotores.map(c => 
+                    `<div class="comment">
+                        <div class="comment-meta">NPS ${c.nps} · ${c.cov} · ${c.mes}</div>
+                        <div class="comment-text">${c.texto}</div>
+                    </div>`
+                ).join('');
+            }
+            
+            if (data.detratores.length === 0) {
+                detDiv.innerHTML = '<p style="font-size:12px;color:#94a3b8">Nenhum comentário de detratores nesta categoria.</p>';
+            } else {
+                detDiv.innerHTML = data.detratores.map(c => 
+                    `<div class="comment">
+                        <div class="comment-meta">NPS ${c.nps} · ${c.cov} · ${c.mes}</div>
+                        <div class="comment-text">${c.texto}</div>
+                    </div>`
+                ).join('');
+            }
+            
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function fecharModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
