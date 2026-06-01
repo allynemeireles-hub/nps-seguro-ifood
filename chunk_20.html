@@ -1,0 +1,40 @@
+processo fazendo com que eu tivesse ciência de tudo", "nps": 9, "cov": "IPA", "mes": "mai./26"}, {"texto": "Alguns pontos que vão melhorar com tempo,  mais foi bem tranquilo", "nps": 9, "cov": "IPA", "mes": "mai./26"}, {"texto": "Fui muito bem atendida,informada .", "nps": 10, "cov": "IPA", "mes": "mai./25"}], "detratores": [{"texto": "Todas as vezes que entrei em contato, tanto via telefone, whatsapp e email, os atendentes foram horríveis, sempre uma informação diferente da anterior, e nunca a verdadeira, só melhorou um pouco quando abri uma reclamação no Reclame aqui, mas ainda assim tive alguns retornos com noticias que não eram a realidade!", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "Não tive êxito no meu seguro", "nps": 6, "cov": "DIT", "mes": "mai./26"}, {"texto": "Não resolveram o meu problema e nem fi", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "Fiquei uma semana enviando e reenviando documentação, e só fiquei sabendo que não ia receber 40 dias depois, por que entrei em contato para o motivo da demora, rejeitaram por que o médico não colocou a data no atestado, uma palhaçada tinha toda a documentação necessária o carimbo do médico e a quantidade de dias de afastamento", "nps": 0, "cov": "DIT", "mes": "mai./26"}]}, "Acompanhamento do processo": {"promotores": [{"texto": "O acompanhamento com médico especialista", "nps": 9, "cov": "IPA", "mes": "mai./26"}, {"texto": "Nota 10 pra assistente social, mas 0 pra quem me respondia por email.", "nps": 10, "cov": "Aux. Gestação", "mes": "mai./25"}, {"texto": "A atenção que mim foi dada durante todo processo!", "nps": 10, "cov": "IPA", "mes": "jun./25"}, {"texto": "Fui atendido", "nps": 9, "cov": "DIT", "mes": "jun./25"}], "detratores": [{"texto": "Até hoje não consegui ó benefícios", "nps": 0, "cov": "DIT", "mes": "mai./26"}, {"texto": "O auxílio é por 30 dias", "nps": 4, "cov": "DIT", "mes": "mai./25"}, {"texto": "Não tive bons retorno após meus 3 meses de recuperação… ou seja a perícia não cuidou da avaliação como teria que ser", "nps": 4, "cov": "IPA", "mes": "mai./25"}, {"texto": "Desrespeito não ter valiado corretamente", "nps": 0, "cov": "DIT", "mes": "mai./25"}]}};
+        
+        function abrirModal(tema) {
+            document.getElementById('modal-titulo').textContent = tema;
+            const data = COMMENTS_DATA[tema] || {promotores: [], detratores: []};
+            
+            const promDiv = document.getElementById('modal-promotores');
+            const detDiv = document.getElementById('modal-detratores');
+            
+            if (data.promotores.length === 0) {
+                promDiv.innerHTML = '<p style="font-size:12px;color:#94a3b8">Nenhum comentário de promotores nesta categoria.</p>';
+            } else {
+                promDiv.innerHTML = data.promotores.map(c => 
+                    `<div class="comment">
+                        <div class="comment-meta">NPS ${c.nps} · ${c.cov} · ${c.mes}</div>
+                        <div class="comment-text">${c.texto}</div>
+                    </div>`
+                ).join('');
+            }
+            
+            if (data.detratores.length === 0) {
+                detDiv.innerHTML = '<p style="font-size:12px;color:#94a3b8">Nenhum comentário de detratores nesta categoria.</p>';
+            } else {
+                detDiv.innerHTML = data.detratores.map(c => 
+                    `<div class="comment">
+                        <div class="comment-meta">NPS ${c.nps} · ${c.cov} · ${c.mes}</div>
+                        <div class="comment-text">${c.texto}</div>
+                    </div>`
+                ).join('');
+            }
+            
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function fecharModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
