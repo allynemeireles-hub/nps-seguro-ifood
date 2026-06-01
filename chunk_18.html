@@ -1,0 +1,56 @@
+                                    <span style="color:#ef4444">6d</span>
+                                    <span style="color:#10b981">2p</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="background:#fffbeb;border-left:4px solid #f59e0b;padding:16px;margin-top:20px;border-radius:4px">
+                <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📊 Leitura do quadro</div>
+                <div style="font-size:12px;color:#78350f;line-height:1.6">
+                    <p style="margin:0 0 8px 0">No mês atual, o tema com maior incidência foi <strong>Sem Suporte / Atendimento</strong> (30.5% dos comentários).</p>
+                    <p style="margin:0">O tema <strong>Processo / Burocracia</strong> teve a maior variação (+4.3pp vs média dos 5 meses anteriores), indicando movimento significativo na percepção dos entregadores.</p>
+                </div>
+            </div>
+            <div style="margin-top:16px;padding:12px;background:#f8fafc;border-radius:6px;font-size:11px;color:#64748b">
+                <div style="font-weight:600;margin-bottom:6px">Legenda — Cor de fundo (polaridade):</div>
+                <div style="display:flex;flex-wrap:wrap;gap:12px">
+                    <div style="display:flex;align-items:center;gap:4px"><div style="width:14px;height:14px;background:#f8fafc;border:1px solid #e2e8f0"></div> &lt; 3 respostas (insuficiente)</div>
+                    <div style="display:flex;align-items:center;gap:4px"><div style="width:14px;height:14px;background:#fef2f2;border:1px solid #e2e8f0"></div> ≥ 60% detratores</div>
+                    <div style="display:flex;align-items:center;gap:4px"><div style="width:14px;height:14px;background:#fffbeb;border:1px solid #e2e8f0"></div> 40–59% detratores (misto)</div>
+                    <div style="display:flex;align-items:center;gap:4px"><div style="width:14px;height:14px;background:#f0fdf4;border:1px solid #e2e8f0"></div> &lt; 40% detratores (promotores dominam)</div>
+                    <div style="margin-left:12px">| <strong>Borda azul</strong> = mês atual</div>
+                </div>
+                <div style="margin-top:6px">Barra: <span style="color:#ef4444">■ detratores</span> / <span style="color:#10b981">■ promotores</span> · NPS = (Promotores - Detratores) / Total × 100</div>
+            </div>
+            <div style="margin-top:12px;font-size:10px;color:#94a3b8;text-align:center">
+                Fonte: NPS Base Full Metlife · Base: respondidos MTD (até data mais recente disponível) · Definição MTD: Month-to-Date · Método: tabulação de q2_multipla_escolha
+            </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    
+    <!-- Modal de Comentários -->
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Comentários</h3>
+                <span class="modal-close" onclick="fecharModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom:20px">
+                    <div class="section-title section-promotores">Promotores (nota 9–10)</div>
+                    <div id="modal-promotores"></div>
+                </div>
+                <div>
+                    <div class="section-title section-detratores">Detratores (nota 0–6)</div>
+                    <div id="modal-detratores"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
