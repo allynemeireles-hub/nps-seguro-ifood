@@ -6,7 +6,7 @@
   <title>Painel NPS MetLife × iFood</title>
   <style>
     body { margin: 0; background: #f1f5f9; font-family: system-ui; }
-    #loading { display:flex; align-items:center; justify-content:center; height:100vh; 
+    #loading { display:flex; align-items:center; justify-content:center; height:100vh;
                flex-direction:column; color:#475569; }
     .spinner { width:40px;height:40px;border:3px solid #e2e8f0;border-top-color:#3b82f6;
                border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:16px; }
@@ -20,10 +20,7 @@
   </div>
   <div id="root"></div>
   <script>
-    const CHUNKS = [
-      'chunk_01_head.html','chunk_02_main.html','chunk_03a_grid.html','chunk_03b_grid.html',
-      'chunk_04a_qual.html','chunk_04b_qual.html','chunk_04c_qual.html','chunk_04d_qual.html','chunk_04e_qual.html'
-    ];
+    const CHUNKS = ['chunk_01.html', 'chunk_02.html', 'chunk_03.html', 'chunk_04.html', 'chunk_05.html', 'chunk_06.html', 'chunk_07.html', 'chunk_08.html', 'chunk_09.html', 'chunk_10.html', 'chunk_11.html', 'chunk_12.html', 'chunk_13.html', 'chunk_14.html', 'chunk_15.html', 'chunk_16.html', 'chunk_17.html', 'chunk_18.html', 'chunk_19.html', 'chunk_20.html'];
     Promise.all(CHUNKS.map(c => fetch(c).then(r => r.text())))
       .then(parts => {
         document.body.innerHTML = parts.join('');
@@ -37,8 +34,9 @@
           }
         });
       })
-      .catch(e => { 
-        document.getElementById('loading').innerHTML = '<div style="color:#ef4444">Erro ao carregar painel: ' + e.message + '</div>'; 
+      .catch(e => {
+        document.getElementById('loading').innerHTML =
+          '<div style="color:#ef4444">Erro ao carregar painel: ' + e.message + '</div>';
       });
   </script>
 </body>
