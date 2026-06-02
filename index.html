@@ -29,13 +29,14 @@
           if (!s.src) {
             const ns = document.createElement('script');
             ns.textContent = s.textContent;
-            s.parentNode.replaceChild(ns, s);
+            document.head.appendChild(ns);
+            s.remove();
           }
         });
       })
       .catch(e => {
         document.getElementById('loading').innerHTML =
-          '<p style="color:#ef4444">Erro ao carregar painel: ' + e.message + '</p>';
+          '<div style="color:#ef4444">Erro ao carregar painel: ' + e.message + '</div>';
       });
   </script>
 </body>
