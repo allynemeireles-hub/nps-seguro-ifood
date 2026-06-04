@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel NPS MetLife × iFood</title>
-<style>body{margin:0;padding:0;font-family:-apple-system,sans-serif;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel NPS MetLife × iFood</title>
+  <style>
+    body { margin: 0; background: #f1f5f9; font-family: system-ui; }
+    #loading { display:flex; align-items:center; justify-content:center; height:100vh;
+               flex-direction:column; color:#475569; }
+    .spinner { width:40px;height:40px;border:3px solid #e2e8f0;border-top-color:#3b82f6;
+               border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:16px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+  </style>
 </head>
 <body>
-<div id="app">Carregando painel...</div>
-<script>
-// Chunk loader — carrega e injeta chunks em sequência
-const CHUNKS = ["chunk_01.html","chunk_02.html","chunk_03.html","chunk_04.html","chunk_05.html","chunk_06.html","chunk_07.html","chunk_08.html","chunk_09.html","chunk_10.html","chunk_11.html","chunk_12.html","chunk_13.html","chunk_14.html","chunk_15.html","chunk_16.html","chunk_17.html","chunk_18.html","chunk_19.html","chunk_20.html"];
-async function loadChunks(){
-  const promises = CHUNKS.map(c => fetch(c).then(r => r.text()));
-  const parts = await Promise.all(promises);
-  document.open();
-  document.write(parts.join(''));
-  document.close();
-}
-loadChunks().catch(e => { document.getElementById('app').textContent = 'Erro ao carregar: ' + e; });
-</script>
+  <div id="loading">
+    <div class="spinner"></div>
+    <div>Carregando painel...</div>
+  </div>
+  <div id="root"></div>
+  <script>
+    const CHUNKS = ['chunk_01.html', 'chunk_02.html', 'chunk_03.html', 'chunk_04.html', 'chunk_05.html', 'chunk_06.html', 'chunk_07.html', 'chunk_08.html', 'chunk_09.html', 'chunk_10.html', 'chunk_11.html', 'chunk_12.html', 'chunk_13.html', 'chunk_14.html', 'chunk_15.html', 'chunk_16.html', 'chunk_17.html', 'chunk_18.html', 'chunk_19.html', 'chunk_20.html'];
+    Promise.all(CHUNKS.map(c => fetch(c).then(r => r.text())))
+      .then(parts => {
+        document.body.innerHTML = parts.join('');
+        // Re-executar scripts inline
+        document.querySelectorAll('script').forEach(s => {
+          if (!s.src) {
+            const ns = document.createElement('script');
+            ns.textContent = s.textContent;
+            document.head.appendChild(ns);
+            s.remove();
+          }
+        });
+      })
+      .catch(e => {
+        document.getElementById('loading').innerHTML =
+          '<div style="color:#ef4444">Erro ao carregar painel: ' + e.message + '</div>';
+      });
+  </script>
 </body>
 </html>
