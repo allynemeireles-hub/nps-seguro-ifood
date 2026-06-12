@@ -1,1 +1,15 @@
-$(cat /workspace/data/metlife-demandas/aba1_demandas.csv)
+#,Demanda,Categoria,Status,Priorização,Descrição,Data de início,Prazo / Deadline,Dono / Responsável,Observações
+1,Aumento de pendentes represados por falha técnica na atualização de status de análise,Falha técnica,🔴 Crítico,Priorizado,"220 casos solucionados em 06/01 — backlog identificado em 08/06 com ~400 casos que ainda não foi reportado formalmente",,—,—,~400 casos em aberto; não reportado formalmente ainda
+2,Coberturas mulher: falha técnica na atualização de status,Falha técnica,🟢 Concluído,—,30 entregadoras impactadas,,—,—,Problema solucionado em 17/05
+3,Problemas na jornada de abertura de sinistros,Falha técnica,🟡 Em andamento,Priorizado,Jornada de abertura com problemas mapeados em slide da Ana Trindade,,29/06/2026,Ana Trindade,Slide compartilhado com MetLife em 09/06 via e-mail e WhatsApp
+4,Bases de CSAT ainda vêm em formato não-acordado,Dado / Padronização,🟡 Em andamento,Priorizado,Falta de padronização das bases e do envio prejudica automações para consumo dos dados pelo iFood,,—,MetLife,Entrega acordada: via Slack toda quarta-feira a partir de 10/06
+5,Report de canais de documentação não está sendo realizado pós-migração,Entrega pendente,⚪ Não iniciado,Priorizado,"Dado que existia na Marsh. Não temos a data desta entrega desde a migração",,TBD,MetLife,Ana Trindade formalizando cobrança via WhatsApp/Slack
+6,Backoffice não permite download de todos os documentos de uma vez pelo analista,Limitação de produto,⚪ Não iniciado,Priorizado,Prejudica a celeridade na análise dos sinistros pela operação,,TBD,MetLife / Klimber,Sem prazo definido
+7,Queda das regras de indeferimento automáticas,Falha técnica,🔴 Crítico,Priorizado,,,09/06/2026,,Crítico + Em andamento
+8,Correção da jornada de abertura de sinistros,Falha técnica,🔴 Crítico,Priorizado,,,29/06/2026,,Slide enviado por e-mail e WhatsApp
+9,Análise e reabertura de casos indeferidos incorretamente no backlog,Análise,🔴 Crítico,Priorizado,,,TBD,,
+10,Campos de contato na base full para assistentes sociais,Dado,🔴 Crítico,Priorizado,,,TBD,,
+11,Bases de CSAT via Slack toda quarta-feira,Dado / Padronização,🟢 Concluído,—,,,10/06/2026,,
+12,Validações do pacote de comunicações de IPA,Comunicação,🟢 Concluído,—,,,09/06/2026,,
+13,Alteração do termo de quitação IPA,Produto,⚪ Não iniciado,—,,,TBD,,
+14,"Marcar agenda para falar de SLA de Aprovação (dúvida: prazo de compensação ~4 dias úteis)",Governança,⚪ Não iniciado,Priorizado,,,Hoje,,
