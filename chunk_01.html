@@ -5,123 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel NPS MetLife × iFood</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#f1f5f9; color:#1e293b; }
-        
-        header { background:linear-gradient(135deg,#1e293b,#334155); color:white; padding:20px; text-align:center; }
-        header h1 { font-size:20px; font-weight:700; margin-bottom:4px; }
-        header p { font-size:11px; opacity:.9; }
-        
-        .container { max-width:1200px; margin:20px auto; padding:0 16px; }
-        
-        .card { background:white; border-radius:8px; padding:16px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
-        .card-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#64748b; margin-bottom:12px; }
-        
-        .big-stat { text-align:center; padding:12px; }
-        .big-stat .valor { font-size:42px; font-weight:800; color:#1e40af; margin-bottom:4px; }
-        .big-stat .label { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#64748b; }
-        .big-stat .delta { font-size:13px; margin-top:4px; }
-        .delta.positivo { color:#059669; }
-        .delta.negativo { color:#b91c1c; }
-        
-        .distribuicao { display:flex; gap:8px; margin-top:12px; }
-        .dist-item { flex:1; text-align:center; padding:8px; background:#f1f5f9; border-radius:6px; }
-        .dist-item .pct { font-size:16px; font-weight:700; margin-bottom:2px; }
-        .dist-item .label { font-size:10px; color:#64748b; }
-        .prom { color:#059669; }
-        .neu { color:#94a3b8; }
-        .det { color:#be123c; }
-        
-        .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-        
-        .cov-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-        .cov-card { background:white; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
-        .cov-title { font-size:13px; font-weight:700; color:#1e293b; margin-bottom:8px; }
-        .cov-stats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; font-size:12px; }
-        .cov-stats .nps { font-weight:700; color:#1e40af; }
-        .cov-stats .delta { font-size:11px; }
-        .cov-legend { display:flex; gap:10px; margin-top:6px; font-size:10px; color:#64748b; }
-        .cov-legend span { display:flex; align-items:center; gap:3px; }
-        .cov-legend .dot { display:inline-block; width:8px; height:8px; border-radius:2px; }
-        
-        .tabul-list { list-style:none; }
-        .tabul-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9; }
-        .tabul-item:last-child { border-bottom:none; }
-        .tabul-tema { font-size:12px; color:#1e293b; flex:1; }
-        .tabul-pct { font-size:13px; font-weight:700; color:#1e40af; margin-right:8px; }
-        .tabul-var { font-size:10px; padding:2px 6px; border-radius:4px; }
-        .tabul-var.alta { background:#dcfce7; color:#166534; }
-        .tabul-var.baixa { background:#fce7e7; color:#991b1b; }
-        
-        .btn { display:inline-block; padding:6px 12px; background:#1e40af; color:white; border:none; border-radius:6px; font-size:11px; cursor:pointer; text-decoration:none; }
-        .btn:hover { background:#1e3a8a; }
-        
-        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000; }
-        .modal.active { display:flex; align-items:center; justify-content:center; }
-        .modal-content { background:white; border-radius:8px; max-width:600px; width:90%; max-height:80vh; display:flex; flex-direction:column; }
-        .modal-header { padding:16px 24px; border-bottom:1px solid #e2e8f0; }
-        .modal-header h3 { font-size:14px; font-weight:700; color:#1e293b; }
-        .modal-body { padding:16px 24px; overflow-y:auto; flex:1; }
-        .modal-close { position:absolute; top:16px; right:24px; font-size:24px; cursor:pointer; color:#64748b; }
-        
-        .comment { margin-bottom:12px; padding:10px; background:#f1f5f9; border-left:3px solid #1e40af; border-radius:4px; }
-        .comment-meta { font-size:10px; color:#64748b; margin-bottom:4px; }
-        .comment-text { font-size:12px; color:#1e293b; }
-        
-        .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; padding:6px 10px; border-radius:6px; }
-        .section-promotores { color:#059669; background:#f0fdf4; }
-        .section-detratores { color:#be123c; background:#fff1f2; }
-        .tabul-item-v2 { padding:10px 0; border-bottom:1px solid #f1f5f9; }
-        .tabul-item-v2:last-child { border-bottom:none; }
-        .tabul-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
-        .tabul-sparkline { width:100%; }
-        .tabul-months { display:flex; justify-content:space-between; font-size:8px; color:#94a3b8; padding:0 2px; margin-top:2px; }
-        .cards-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px; margin:16px 0; }
-        .month-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; }
-        .month-card .mc-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:6px; }
-        .month-card .mc-value { font-size:24px; font-weight:700; color:#1e293b; }
-        .month-card .mc-sub { font-size:11px; color:#64748b; margin-top:4px; }
-        .month-card .mc-tema { font-size:11px; color:#64748b; margin-top:6px; }
-        .qual-section { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; margin-bottom:16px; }
-        .qual-section-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:14px; }
-        .qual-table { width:100%; border-collapse:collapse; font-size:13px; }
-        .qual-table th { text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#64748b; border-bottom:2px solid #e2e8f0; padding:8px 10px; }
-        .qual-table td { padding:9px 10px; border-bottom:1px solid #f1f5f9; }
-        .qual-table tr:last-child td { border-bottom:none; }
-        .qual-table tr:hover td { background:#f8fafc; }
-        .qual-table .tdright { text-align:right; }
-        .peak { background:#fef3c7; font-weight:600; }
-        .diag { border-left:4px solid #059669; background:#f8fafc; border-radius:0 10px 10px 0; padding:16px 20px; margin-top:16px; }
-        .diag h3 { font-size:12px; font-weight:700; color:#059669; margin-bottom:10px; text-transform:uppercase; letter-spacing:.06em; }
-        .diag p { font-size:13px; line-height:1.6; color:#1e293b; margin-bottom:6px; }
-        .nota-met { font-size:11px; color:#94a3b8; margin-top:10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f1f5f9; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 1.8rem; color: #38bdf8; margin-bottom: 5px; }
+        .subtitle { color: #94a3b8; font-size: 0.9rem; }
+        .nps-card { background: linear-gradient(135deg, #1e3a5f, #0c2340); border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .nps-big { font-size: 4rem; font-weight: 800; color: #f87171; }
+        .nps-big.positive { color: #4ade80; }
+        .nps-big.neutral { color: #fbbf24; }
+        .label { font-size: 1.1rem; color: #94a3b8; margin-top: 5px; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: #1e293b; border-radius: 12px; padding: 20px; text-align: center; }
+        .stat-value { font-size: 1.8rem; font-weight: 700; color: #38bdf8; }
+        .stat-label { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+        .pct { font-size: 1.2rem; font-weight: 600; }
+        .pct.prom { color: #4ade80; }
+        .pct.det { color: #f87171; }
+        .pct.neu { color: #fbbf24; }
+        .section { background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        h2 { font-size: 1.1rem; color: #38bdf8; margin-bottom: 16px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th { background: #0f172a; color: #94a3b8; padding: 10px 8px; text-align: left; }
+        td { padding: 10px 8px; border-bottom: 1px solid #334155; }
+        tr:hover { background: #334155; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+        .badge.pago { background: #064e3b; color: #4ade80; }
+        .badge.recusado { background: #7f1d1d; color: #f87171; }
+        .footer { text-align: center; color: #475569; font-size: 0.75rem; margin-top: 30px; }
+        @media (max-width: 768px) { .stats { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Painel NPS — MetLife × iFood</h1>
-        <p>Dados atualizados até 02/07/2026 &nbsp;|&nbsp; Jul/26 MTD</p>
-    </header>
     <div class="container">
-        <div class="card">
-            <div class="big-stat">
-                <div class="valor">-18,0</div>
-                <div class="label">NPS — Jul/26 MTD</div>
-                <div class="delta negativo">▼ −6,1 vs Jun/26</div>
-            </div>
-            <div class="distribuicao">
-                <div class="dist-item">
-                    <div class="pct prom">38%</div>
-                    <div class="label">Promotores</div>
-                </div>
-                <div class="dist-item">
-                    <div class="pct neu">6%</div>
-                    <div class="label">Neutros</div>
-                </div>
-                <div class="dist-item">
-                    <div class="pct det">56%</div>
-                    <div class="label">Detratores</div>
-                </div>
-            </div>
-            <p style="text-align:center; font-size:11px; color:#64748b; margin-top:10px;">359 respondentes</p>
+        <header>
+            <h1>Painel NPS — Seguro Entregador iFood × MetLife</h1>
+            <p class="subtitle">MetLife × iFood · Atualização automática diária</p>
+        </header>
+        <div class="nps-card">
+            <div class="nps-big negative">–18,0</div>
+            <div class="label">NPS Jul/26 · dados até 02/07/2026</div>
         </div>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">3.483</div>
+                <div class="stat-label">Total de respondentes</div>
+            </div>
+            <div class="stat-card">
+                <div class="pct prom">38%</div>
+                <div class="stat-label">Promotores (9–10)</div>
+            </div>
+            <div class="stat-card">
+                <div class="pct det">56%</div>
+                <div class="stat-label">Detratores (0–6)</div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Dados em load...</h2>
+            <p style="color:#64748b">Carregando métricas detalhadas...</p>
+        </div>
+    </div>
+    <div class="footer">Painel NPS MetLife × iFood · Atualizado em 19/07/2026 14:30 BRT</div>
+</body>
+</html>
