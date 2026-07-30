@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Painel NPS MetLife × iFood</title><style>body{margin:0;background:#f1f5f9;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#1e293b}#loading{padding:24px;text-align:center;color:#64748b}.container{max-width:1200px;margin:0 auto;padding:24px}.card{background:white;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}.card-title{font-size:18px;font-weight:700;margin-bottom:12px}.big-stat{margin:12px 0}.valor,.nps{font-size:28px;font-weight:800;color:#1e3a8a}.label{font-size:12px;color:#64748b}.pct{font-weight:700}.prom{color:#059669}.det{color:#be123c}.delta{font-size:12px}.positivo{color:#059669}.negativo{color:#dc2626}.distribuicao{display:flex;gap:28px}.cov-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.cov-card{border:1px solid #e2e8f0;border-radius:10px;padding:12px}.cov-title{font-weight:700;margin-bottom:8px}.cov-stats{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.cov-legend{display:flex;gap:12px;font-size:10px;color:#64748b}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px}.tabul-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tabul-item{border:1px solid #e2e8f0;border-radius:6px;padding:10px;display:flex;justify-content:space-between}.modal{display:none}.modal.active{display:block}@media(max-width:700px){.cov-grid,.tabul-list{grid-template-columns:1fr}.container{padding:12px}}</style></head><body><div id="loading">Carregando painel...</div><div id="root"></div><script>
-const CHUNKS=['chunk_01.html','chunk_02.html','chunk_03.html','chunk_04.html','chunk_05.html','chunk_06.html','chunk_07.html','chunk_08.html','chunk_09.html','chunk_10.html','chunk_11.html','chunk_12.html','chunk_13.html','chunk_14.html','chunk_15.html','chunk_16.html','chunk_17.html','chunk_18.html','chunk_19.html','chunk_20.html'];
-Promise.all(CHUNKS.map(c=>fetch(c).then(r=>{if(!r.ok)throw new Error(c+' HTTP '+r.status);return r.text()}))).then(parts=>{document.getElementById('root').innerHTML='<main class="container">'+parts.join('')+'</main>';document.getElementById('loading').remove()}).catch(e=>{document.getElementById('loading').textContent='Erro ao carregar painel: '+e.message});
-</script></body></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel NPS MetLife × iFood</title>
+  <style>
+    body { margin: 0; background: #f1f5f9; font-family: system-ui; }
+    #loading { padding: 2rem; text-align:center; color:#64748b; }
+    #root { max-width: 1400px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+<div id="loading">Carregando painel...</div>
+<div id="root"></div>
+<script>
+const CHUNKS = ['chunk_01.html','chunk_02.html','chunk_03.html','chunk_04.html','chunk_05.html','chunk_06.html','chunk_07.html','chunk_08.html','chunk_09.html','chunk_10.html','chunk_11.html','chunk_12.html','chunk_13.html','chunk_14.html','chunk_15.html','chunk_16.html','chunk_17.html','chunk_18.html','chunk_19.html','chunk_20.html'];
+Promise.all(CHUNKS.map(c => fetch(c).then(r => { if (!r.ok) throw new Error(c + ' HTTP ' + r.status); return r.text(); }))).then(parts => {
+  document.getElementById('root').innerHTML = parts.join('');
+  document.getElementById('loading').remove();
+}).catch(e => { document.getElementById('loading').textContent = 'Erro ao carregar painel: ' + e.message; });
+</script>
+</body>
+</html>
