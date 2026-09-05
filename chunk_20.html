@@ -1,10 +1,11 @@
-    </main>
-    <div id="modal" class="modal"><div class="modal-content"><div class="modal-header"><h3>Comentários da pesquisa</h3></div><div class="modal-body"><p style="font-size:12px;color:#64748b;">Selecione um tema para consultar os comentários correspondentes.</p></div></div></div>
-    <script>
-        const COMMENTS_DATA = {"Suporte e atendimento": {"promotores": [], "detratores": []}, "Valor recebido": {"promotores": [], "detratores": []}};
-        function openComments(){document.getElementById('modal').classList.add('active');}
-        function closeComments(){document.getElementById('modal').classList.remove('active');}
-        document.addEventListener('click', e => { if(e.target.id === 'modal') closeComments(); });
-    </script>
+
+<script>
+const COMMENTS_DATA = {"Suporte e atendimento":{"promotores":[],"detratores":[]},"Valor recebido":{"promotores":[],"detratores":[]}};
+function openComments(){document.getElementById('modal').classList.add('active');}
+function closeComments(){document.getElementById('modal').classList.remove('active');}
+document.addEventListener('click', e => { if(e.target.id === 'modal') closeComments(); });
+</script>
+</main>
+</div>
 </body>
 </html>
