@@ -1,4 +1,12 @@
-<section class="card">
-  <div class="section-title section-promotores">Promotores</div>
-  <ul class="tabul-list"><li class="tabul-item"><span class="tabul-tema">Atendimento rápido e resolutivo</span><span class="tabul-pct">28%</span></li><li class="tabul-item"><span class="tabul-tema">Recebimento do valor esperado</span><span class="tabul-pct">22%</span></li><li class="tabul-item"><span class="tabul-tema">Facilidade do processo</span><span class="tabul-pct">16%</span></li></ul>
-</section>
+
+            <script>
+                function openModal() {
+                  var modal = document.getElementById('comments-modal');
+                  var body = document.getElementById('modal-body');
+                  body.innerHTML = '<p>Os comentários ficam disponíveis por tema selecionado.</p>';
+                  modal.classList.add('active');
+                }
+                function closeModal(event) {
+                  if (!event || event.target === event.currentTarget) document.getElementById('comments-modal').classList.remove('active');
+                }
+            </script>
