@@ -2,33 +2,57 @@
 <body>
     <header>
         <h1>Painel NPS MetLife × iFood</h1>
-        <p>Dados disponíveis até 22/08/2026 &nbsp;·&nbsp; Ago/26 MTD</p>
+        <p>Dados disponíveis até 12/09/2026 &nbsp;·&nbsp; Set/26 MTD</p>
     </header>
     
     <div class="container">
         <!-- Visão Geral -->
         <div class="card">
             <div class="card-title">Visão Geral</div>
-            <div class="big-stat">
-                <div class="valor">+13</div>
-                <div class="label">NPS Ago/26</div>
-                <div class="delta positivo">
-                    +1 vs Jul/26
-                </div>
+            <div class="grid-2">
+                <div class="big-stat"><div class="valor">14</div><div class="label">NPS Geral</div><div class="delta positivo">▲ 2 pts vs ago./26</div></div>
+                <div class="big-stat"><div class="valor">388</div><div class="label">Respondentes</div><div class="delta">Set/26 MTD</div></div>
             </div>
             <div class="distribuicao">
-                <div class="dist-item">
-                    <div class="pct prom">53%</div>
-                    <div class="label">Promotores</div>
-                </div>
-                <div class="dist-item">
-                    <div class="pct neu">8%</div>
-                    <div class="label">Neutros</div>
-                </div>
-                <div class="dist-item">
-                    <div class="pct det">40%</div>
-                    <div class="label">Detratores</div>
-                </div>
+                <div class="dist-item"><div class="pct prom">58%</div><div class="label">Promotores (9-10)</div></div>
+                <div class="dist-item"><div class="pct neu">20%</div><div class="label">Neutros (7-8)</div></div>
+                <div class="dist-item"><div class="pct det">44%</div><div class="label">Detratores (0-6)</div></div>
             </div>
         </div>
-        
+
+        <!-- Tendência -->
+        <div class="card">
+            <div class="card-title">Tendência Mensal</div>
+            <div class="cards-grid">
+                <div class="month-card"><div class="mc-label">Abr/26</div><div class="mc-value">-17</div><div class="mc-sub">81 resp.</div></div>
+                <div class="month-card"><div class="mc-label">Mai/26</div><div class="mc-value">-5</div><div class="mc-sub">157 resp.</div></div>
+                <div class="month-card"><div class="mc-label">Jun/26</div><div class="mc-value">12</div><div class="mc-sub">223 resp.</div></div>
+                <div class="month-card"><div class="mc-label">Jul/26</div><div class="mc-value">16</div><div class="mc-sub">365 resp.</div></div>
+                <div class="month-card"><div class="mc-label">Ago/26</div><div class="mc-value">12</div><div class="mc-sub">442 resp.</div></div>
+                <div class="month-card"><div class="mc-label">Set/26</div><div class="mc-value">14</div><div class="mc-sub">388 resp.</div></div>
+            </div>
+        </div>
+
+        <!-- Grid Coberturas -->
+        <div class="card">
+            <div class="card-title">NPS por Cobertura</div>
+            <div class="cov-grid">
+                <div class="cov-card"><div class="cov-title">DIT</div><div class="cov-stats"><span class="nps">NPS 15</span><span> · 343 resp.</span><span class="delta positivo">▲ 3</span></div><div class="cov-legend"><span><i class="dot" style="background:#059669"></i>Promotores 59%</span><span><i class="dot" style="background:#be123c"></i>Detratores 44%</span></div></div>
+                <div class="cov-card"><div class="cov-title">IPA</div><div class="cov-stats"><span class="nps">NPS 4</span><span> · 25 resp.</span><span class="delta negativo">▼ 8</span></div><div class="cov-legend"><span><i class="dot" style="background:#059669"></i>Promotores 48%</span><span><i class="dot" style="background:#be123c"></i>Detratores 44%</span></div></div>
+                <div class="cov-card"><div class="cov-title">DMHO</div><div class="cov-stats"><span class="nps">NPS 0</span><span> · 12 resp.</span><span class="delta">—</span></div><div class="cov-legend"><span><i class="dot" style="background:#059669"></i>Promotores 50%</span><span><i class="dot" style="background:#be123c"></i>Detratores 50%</span></div></div>
+                <div class="cov-card"><div class="cov-title">Outras</div><div class="cov-stats"><span class="nps">NPS 0</span><span> · 8 resp.</span><span class="delta">—</span></div><div class="cov-legend"><span><i class="dot" style="background:#059669"></i>Promotores 50%</span><span><i class="dot" style="background:#be123c"></i>Detratores 50%</span></div></div>
+            </div>
+        </div>
+
+        <!-- Análise qualitativa -->
+        <div class="card">
+            <div class="card-title">Análise Qualitativa</div>
+            <div class="grid-2">
+                <div><div class="section-title section-promotores">Promotores</div><ul class="tabul-list"><li class="tabul-item"><span class="tabul-tema">Atendimento e suporte</span><span class="tabul-pct">32%</span></li><li class="tabul-item"><span class="tabul-tema">Pagamento/valor</span><span class="tabul-pct">24%</span></li><li class="tabul-item"><span class="tabul-tema">Rapidez</span><span class="tabul-pct">18%</span></li></ul></div>
+                <div><div class="section-title section-detratores">Detratores</div><ul class="tabul-list"><li class="tabul-item"><span class="tabul-tema">Tempo de análise</span><span class="tabul-pct">28%</span></li><li class="tabul-item"><span class="tabul-tema">Comunicação</span><span class="tabul-pct">22%</span></li><li class="tabul-item"><span class="tabul-tema">Documentação</span><span class="tabul-pct">19%</span></li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="comments-modal" class="modal"><div class="modal-content"><div class="modal-header"><h3>Comentários</h3></div><div class="modal-body"></div></div></div>
+
