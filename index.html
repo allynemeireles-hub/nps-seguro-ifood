@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel NPS MetLife × iFood</title>
-</head>
-<body>
-  <p>Carregando painel NPS…</p>
-  <script>
-    const files = [
-      'chunk_01.html','chunk_02.html','chunk_03.html','chunk_04.html','chunk_05.html',
-      'chunk_06.html','chunk_07.html','chunk_08.html','chunk_09.html','chunk_10.html',
-      'chunk_11.html','chunk_12.html','chunk_13.html','chunk_14.html','chunk_15.html',
-      'chunk_16.html','chunk_17.html','chunk_18.html','chunk_19.html','chunk_20.html'
-    ];
-    Promise.all(files.map(file => fetch(file).then(response => {
-      if (!response.ok) throw new Error(`${file}: HTTP ${response.status}`);
-      return response.text();
-    }))).then(chunks => {
-      document.open();
-      document.write(chunks.join(''));
-      document.close();
-    }).catch(error => {
-      document.body.innerHTML = `<p>Não foi possível carregar o painel: ${error.message}</p>`;
-    });
-  </script>
-</body>
-</html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Painel NPS MetLife × iFood</title></head>
+<body><p>Carregando painel NPS…</p><script>
+const files=['chunk_01.html','chunk_02.html','chunk_03.html','chunk_04.html','chunk_05.html','chunk_06.html','chunk_07.html','chunk_08.html','chunk_09.html','chunk_10.html','chunk_11.html','chunk_12.html','chunk_13.html','chunk_14.html','chunk_15.html','chunk_16.html','chunk_17.html','chunk_18.html','chunk_19.html','chunk_20.html'];
+Promise.all(files.map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error(`${file}: HTTP ${r.status}`);return r.text()}))).then(chunks=>{document.open();document.write(chunks.join(''));document.close()}).catch(error=>{document.body.innerHTML=`<p>Não foi possível carregar o painel: ${error.message}</p>`});
+</script></body></html>
