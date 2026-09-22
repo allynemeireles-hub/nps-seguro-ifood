@@ -3,58 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel NPS — Sinistros iFood × MetLife</title>
+    <title>Painel NPS MetLife × iFood</title>
     <style>
-        :root {
-            --bg: #f4f7fb;
-            --card: #ffffff;
-            --navy: #0f172a;
-            --teal: #0f766e;
-            --teal-light: #ccfbf1;
-            --green: #16a34a;
-            --red: #dc2626;
-            --muted: #64748b;
-            --border: #e2e8f0;
-        }
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--navy); }
-        .container { max-width: 1240px; margin: 0 auto; padding: 24px; }
-        header { background: var(--navy); color: white; padding: 22px 24px; border-radius: 0 0 14px 14px; }
-        header h1 { margin: 0; font-size: 28px; }
-        header p { margin: 6px 0 0; color: #cbd5e1; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(15,23,42,.05); }
-        .label { color: var(--muted); font-size: 13px; }
-        .value { font-size: 30px; font-weight: 700; margin-top: 6px; }
-        .section-title { font-size: 20px; margin: 26px 0 12px; }
-        table { width: 100%; border-collapse: collapse; background: var(--card); }
-        th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; font-size: 13px; }
-        th { background: var(--teal); color: white; position: sticky; top: 0; }
-        .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .chart { min-height: 240px; }
-        .footer { color: var(--muted); font-size: 12px; margin-top: 30px; }
-        @media (max-width: 800px) { .grid, .charts { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 520px) { .grid, .charts { grid-template-columns: 1fr; } .container { padding: 12px; } }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: Arial, sans-serif; background:#f8fafc; color:#0f172a; }
     </style>
 </head>
 <body>
-<header><div class="container"><h1>Painel NPS — Sinistros iFood × MetLife</h1><p>Dados atualizados até 21/08/2026 · MTD ago./26</p></div></header>
-<main class="container">
-<!-- SPLIT -->
-<section id="overview"><h2 class="section-title">Visão Geral</h2>
-<div class="grid"><div class="card"><div class="label">NPS</div><div class="value">15</div></div><div class="card"><div class="label">Respondentes</div><div class="value">467</div></div><div class="card"><div class="label">Promotores</div><div class="value">46%</div></div><div class="card"><div class="label">Detratores</div><div class="value">31%</div></div></div>
-<table><thead><tr><th>Métrica</th><th>Atual</th><th>Anterior</th><th>Variação</th></tr></thead><tbody><tr><td>NPS</td><td>15</td><td>-4</td><td>+19 p.p.</td></tr><tr><td>Respondentes</td><td>467</td><td>209</td><td>+123%</td></tr></tbody></table>
-</section>
-<section id="trend"><h2 class="section-title">Tendência MoM + WoW</h2><div class="charts"><div class="card chart"><h3>MoM</h3><svg viewBox="0 0 600 250" role="img" aria-label="Tendência mensal de NPS"><polyline points="30,190 130,160 230,170 330,120 430,135 530,80" fill="none" stroke="#0f766e" stroke-width="4"/><circle cx="530" cy="80" r="6" fill="#0f766e"/></svg></div><div class="card chart"><h3>WoW</h3><svg viewBox="0 0 600 250" role="img" aria-label="Tendência semanal de NPS"><polyline points="30,180 130,170 230,150 330,140 430,105 530,80" fill="none" stroke="#dc2626" stroke-width="4"/><circle cx="530" cy="80" r="6" fill="#dc2626"/></svg></div></div></section>
-<!-- SPLIT -->
-<div id="journey"><h2 class="section-title">Comparativo Jornada</h2><div class="card"><svg viewBox="0 0 900 260" role="img" aria-label="Comparativo de jornada completa e incompleta"><line x1="35" y1="210" x2="870" y2="210" stroke="#cbd5e1"/><polyline points="50,160 200,140 350,150 500,110 650,120 820,70" fill="none" stroke="#0f766e" stroke-width="4"/><polyline points="50,190 200,180 350,175 500,160 650,165 820,150" fill="none" stroke="#94a3b8" stroke-width="4"/></svg></div></div>
-<!-- SPLIT -->
-<section id="coverage"><h2 class="section-title">Grid Coberturas</h2><div class="grid"><div class="card"><b>DIT</b><p>NPS 18 · 312 respondentes</p></div><div class="card"><b>DMHO</b><p>NPS 12 · 79 respondentes</p></div><div class="card"><b>IPA</b><p>NPS 8 · 41 respondentes</p></div><div class="card"><b>Outras</b><p>NPS 4 · 35 respondentes</p></div></div></section>
-<!-- SPLIT -->
-<section id="qualitative"><h2 class="section-title">Análise Qualitativa</h2><div class="card"><table><thead><tr><th>Tabulação</th><th>Respostas</th><th>Participação</th></tr></thead><tbody><tr><td>Suporte e atendimento</td><td>128</td><td>27%</td></tr><tr><td>Prazo de pagamento</td><td>75</td><td>16%</td></tr><tr><td>Clareza da comunicação</td><td>58</td><td>12%</td></tr></tbody></table></div></section>
-<p class="footer">Painel NPS MetLife × iFood · publicação diária</p>
-</main>
-<!-- SPLIT -->
-<script>window.__NPS_PANEL__={updatedThrough:'21/08/2026',respondents:467,nps:15};</script>
-</body>
-</html>
