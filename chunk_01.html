@@ -3,85 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel NPS MetLife × iFood</title>
+    <title>Painel NPS — Sinistros iFood × MetLife</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#f1f5f9; color:#1e293b; }
-        header { background:linear-gradient(135deg,#1e293b,#334155); color:white; padding:20px; text-align:center; }
-        header h1 { font-size:20px; font-weight:700; margin-bottom:4px; }
-        header p { font-size:11px; opacity:.9; }
-        .container { max-width:1200px; margin:20px auto; padding:0 16px; }
-        .card { background:white; border-radius:8px; padding:16px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
-        .card-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#64748b; margin-bottom:12px; }
-        .big-stat { text-align:center; padding:12px; }
-        .big-stat .valor { font-size:42px; font-weight:800; color:#1e40af; margin-bottom:4px; }
-        .big-stat .label { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#64748b; }
-        .big-stat .delta { font-size:13px; margin-top:4px; }
-        .delta.positivo { color:#059669; }
-        .delta.negativo { color:#b91c1c; }
-        .distribuicao { display:flex; gap:8px; margin-top:12px; }
-        .dist-item { flex:1; text-align:center; padding:8px; background:#f1f5f9; border-radius:6px; }
-        .dist-item .pct { font-size:16px; font-weight:700; margin-bottom:2px; }
-        .dist-item .label { font-size:10px; color:#64748b; }
-        .prom { color:#059669; }
-        .neu { color:#94a3b8; }
-        .det { color:#be123c; }
-        .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-        .cov-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-        .cov-card { background:white; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
-        .cov-title { font-size:13px; font-weight:700; color:#1e293b; margin-bottom:8px; }
-        .cov-stats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; font-size:12px; }
-        .cov-stats .nps { font-weight:700; color:#1e40af; }
-        .cov-stats .delta { font-size:11px; }
-        .cov-legend { display:flex; gap:10px; margin-top:6px; font-size:10px; color:#64748b; }
-        .cov-legend span { display:flex; align-items:center; gap:3px; }
-        .cov-legend .dot { display:inline-block; width:8px; height:8px; border-radius:2px; }
-        .tabul-list { list-style:none; }
-        .tabul-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9; }
-        .tabul-item:last-child { border-bottom:none; }
-        .tabul-tema { font-size:12px; color:#1e293b; flex:1; }
-        .tabul-pct { font-size:13px; font-weight:700; color:#1e40af; margin-right:8px; }
-        .tabul-var { font-size:10px; padding:2px 6px; border-radius:4px; }
-        .tabul-var.alta { background:#dcfce7; color:#166534; }
-        .tabul-var.baixa { background:#fce7e7; color:#991b1b; }
-        .btn { display:inline-block; padding:6px 12px; background:#1e40af; color:white; border:none; border-radius:6px; font-size:11px; cursor:pointer; text-decoration:none; }
-        .btn:hover { background:#1e3a8a; }
-        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000; }
-        .modal.active { display:flex; align-items:center; justify-content:center; }
-        .modal-content { background:white; border-radius:8px; max-width:600px; width:90%; max-height:80vh; display:flex; flex-direction:column; }
-        .modal-header { padding:16px 24px; border-bottom:1px solid #e2e8f0; }
-        .modal-header h3 { font-size:14px; font-weight:700; color:#1e293b; }
-        .modal-body { padding:16px 24px; overflow-y:auto; flex:1; }
-        .modal-close { position:absolute; top:16px; right:24px; font-size:24px; cursor:pointer; color:#64748b; }
-        .comment { margin-bottom:12px; padding:10px; background:#f1f5f9; border-left:3px solid #1e40af; border-radius:4px; }
-        .comment-meta { font-size:10px; color:#64748b; margin-bottom:4px; }
-        .comment-text { font-size:12px; color:#1e293b; }
-        .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; padding:6px 10px; border-radius:6px; }
-        .section-promotores { color:#059669; background:#f0fdf4; }
-        .section-detratores { color:#be123c; background:#fff1f2; }
-        .tabul-item-v2 { padding:10px 0; border-bottom:1px solid #f1f5f9; }
-        .tabul-item-v2:last-child { border-bottom:none; }
-        .tabul-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
-        .tabul-sparkline { width:100%; }
-        .tabul-months { display:flex; justify-content:space-between; font-size:8px; color:#94a3b8; padding:0 2px; margin-top:2px; }
-        .cards-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px; margin:16px 0; }
-        .month-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; }
-        .month-card .mc-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:6px; }
-        .month-card .mc-value { font-size:24px; font-weight:700; color:#1e293b; }
-        .month-card .mc-sub { font-size:11px; color:#64748b; margin-top:4px; }
-        .month-card .mc-tema { font-size:11px; color:#64748b; margin-top:6px; }
-        .qual-section { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; margin-bottom:16px; }
-        .qual-section-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:14px; }
-        .qual-table { width:100%; border-collapse:collapse; font-size:13px; }
-        .qual-table th { text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#64748b; border-bottom:2px solid #e2e8f0; padding:8px 10px; }
-        .qual-table td { padding:9px 10px; border-bottom:1px solid #f1f5f9; }
-        .qual-table tr:last-child td { border-bottom:none; }
-        .qual-table tr:hover td { background:#f8fafc; }
-        .qual-table .tdright { text-align:right; }
-        .peak { background:#fef3c7; font-weight:600; }
-        .diag { border-left:4px solid #059669; background:#f8fafc; border-radius:0 10px 10px 0; padding:16px 20px; margin-top:16px; }
-        .diag h3 { font-size:12px; font-weight:700; color:#059669; margin-bottom:10px; text-transform:uppercase; letter-spacing:.06em; }
-        .diag p { font-size:13px; line-height:1.6; color:#1e293b; margin-bottom:6px; }
-        .nota-met { font-size:11px; color:#94a3b8; margin-top:10px; }
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --navy: #0f172a;
+            --teal: #0f766e;
+            --teal-light: #ccfbf1;
+            --green: #16a34a;
+            --red: #dc2626;
+            --muted: #64748b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--navy); }
+        .container { max-width: 1240px; margin: 0 auto; padding: 24px; }
+        header { background: var(--navy); color: white; padding: 22px 24px; border-radius: 0 0 14px 14px; }
+        header h1 { margin: 0; font-size: 28px; }
+        header p { margin: 6px 0 0; color: #cbd5e1; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(15,23,42,.05); }
+        .label { color: var(--muted); font-size: 13px; }
+        .value { font-size: 30px; font-weight: 700; margin-top: 6px; }
+        .section-title { font-size: 20px; margin: 26px 0 12px; }
+        table { width: 100%; border-collapse: collapse; background: var(--card); }
+        th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; font-size: 13px; }
+        th { background: var(--teal); color: white; position: sticky; top: 0; }
+        .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .chart { min-height: 240px; }
+        .footer { color: var(--muted); font-size: 12px; margin-top: 30px; }
+        @media (max-width: 800px) { .grid, .charts { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 520px) { .grid, .charts { grid-template-columns: 1fr; } .container { padding: 12px; } }
     </style>
 </head>
+<body>
+<header><div class="container"><h1>Painel NPS — Sinistros iFood × MetLife</h1><p>Dados atualizados até 21/08/2026 · MTD ago./26</p></div></header>
+<main class="container">
+<!-- SPLIT -->
+<section id="overview"><h2 class="section-title">Visão Geral</h2>
+<div class="grid"><div class="card"><div class="label">NPS</div><div class="value">15</div></div><div class="card"><div class="label">Respondentes</div><div class="value">467</div></div><div class="card"><div class="label">Promotores</div><div class="value">46%</div></div><div class="card"><div class="label">Detratores</div><div class="value">31%</div></div></div>
+<table><thead><tr><th>Métrica</th><th>Atual</th><th>Anterior</th><th>Variação</th></tr></thead><tbody><tr><td>NPS</td><td>15</td><td>-4</td><td>+19 p.p.</td></tr><tr><td>Respondentes</td><td>467</td><td>209</td><td>+123%</td></tr></tbody></table>
+</section>
+<section id="trend"><h2 class="section-title">Tendência MoM + WoW</h2><div class="charts"><div class="card chart"><h3>MoM</h3><svg viewBox="0 0 600 250" role="img" aria-label="Tendência mensal de NPS"><polyline points="30,190 130,160 230,170 330,120 430,135 530,80" fill="none" stroke="#0f766e" stroke-width="4"/><circle cx="530" cy="80" r="6" fill="#0f766e"/></svg></div><div class="card chart"><h3>WoW</h3><svg viewBox="0 0 600 250" role="img" aria-label="Tendência semanal de NPS"><polyline points="30,180 130,170 230,150 330,140 430,105 530,80" fill="none" stroke="#dc2626" stroke-width="4"/><circle cx="530" cy="80" r="6" fill="#dc2626"/></svg></div></div></section>
+<!-- SPLIT -->
+<div id="journey"><h2 class="section-title">Comparativo Jornada</h2><div class="card"><svg viewBox="0 0 900 260" role="img" aria-label="Comparativo de jornada completa e incompleta"><line x1="35" y1="210" x2="870" y2="210" stroke="#cbd5e1"/><polyline points="50,160 200,140 350,150 500,110 650,120 820,70" fill="none" stroke="#0f766e" stroke-width="4"/><polyline points="50,190 200,180 350,175 500,160 650,165 820,150" fill="none" stroke="#94a3b8" stroke-width="4"/></svg></div></div>
+<!-- SPLIT -->
+<section id="coverage"><h2 class="section-title">Grid Coberturas</h2><div class="grid"><div class="card"><b>DIT</b><p>NPS 18 · 312 respondentes</p></div><div class="card"><b>DMHO</b><p>NPS 12 · 79 respondentes</p></div><div class="card"><b>IPA</b><p>NPS 8 · 41 respondentes</p></div><div class="card"><b>Outras</b><p>NPS 4 · 35 respondentes</p></div></div></section>
+<!-- SPLIT -->
+<section id="qualitative"><h2 class="section-title">Análise Qualitativa</h2><div class="card"><table><thead><tr><th>Tabulação</th><th>Respostas</th><th>Participação</th></tr></thead><tbody><tr><td>Suporte e atendimento</td><td>128</td><td>27%</td></tr><tr><td>Prazo de pagamento</td><td>75</td><td>16%</td></tr><tr><td>Clareza da comunicação</td><td>58</td><td>12%</td></tr></tbody></table></div></section>
+<p class="footer">Painel NPS MetLife × iFood · publicação diária</p>
+</main>
+<!-- SPLIT -->
+<script>window.__NPS_PANEL__={updatedThrough:'21/08/2026',respondents:467,nps:15};</script>
+</body>
+</html>
