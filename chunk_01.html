@@ -5,23 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel NPS MetLife × iFood</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:#f1f5f9; color:#1e293b; }
-        header { background:linear-gradient(135deg,#1e293b,#334155); color:white; padding:20px; text-align:center; }
-        header h1 { font-size:20px; font-weight:700; margin-bottom:4px; }
-        header p { font-size:11px; opacity:.9; }
-        .container { max-width:1200px; margin:20px auto; padding:0 16px; }
-        .card { background:white; border-radius:8px; padding:16px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.1); }
-        .card-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#64748b; margin-bottom:12px; }
-        .big-stat { text-align:center; padding:12px; } .big-stat .valor { font-size:42px; font-weight:800; color:#1e40af; margin-bottom:4px; } .big-stat .label { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#64748b; } .big-stat .delta { font-size:13px; margin-top:4px; }
-        .delta.positivo { color:#059669; } .delta.negativo { color:#b91c1c; }
-        .distribuicao { display:flex; gap:8px; margin-top:12px; } .dist-item { flex:1; text-align:center; padding:8px; background:#f1f5f9; border-radius:6px; } .dist-item .pct { font-size:16px; font-weight:700; margin-bottom:2px; } .dist-item .label { font-size:10px; color:#64748b; } .prom { color:#059669; } .neu { color:#94a3b8; } .det { color:#be123c; }
-        .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-        .cov-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; } .cov-card { background:white; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.1); } .cov-title { font-size:13px; font-weight:700; color:#1e293b; margin-bottom:8px; } .cov-stats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; font-size:12px; } .cov-stats .nps { font-weight:700; color:#1e40af; } .cov-stats .delta { font-size:11px; } .cov-legend { display:flex; gap:10px; margin-top:6px; font-size:10px; color:#64748b; } .cov-legend span { display:flex; align-items:center; gap:3px; } .cov-legend .dot { display:inline-block; width:8px; height:8px; border-radius:2px; }
-        .tabul-list { list-style:none; } .tabul-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9; } .tabul-item:last-child { border-bottom:none; } .tabul-tema { font-size:12px; color:#1e293b; flex:1; } .tabul-pct { font-size:13px; font-weight:700; color:#1e40af; margin-right:8px; } .tabul-var { font-size:10px; padding:2px 6px; border-radius:4px; } .tabul-var.alta { background:#dcfce7; color:#166534; } .tabul-var.baixa { background:#fce7e7; color:#991b1b; }
-        .btn { display:inline-block; padding:6px 12px; background:#1e40af; color:white; border:none; border-radius:6px; font-size:11px; cursor:pointer; text-decoration:none; } .btn:hover { background:#1e3a8a; }
-        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000; } .modal.active { display:flex; align-items:center; justify-content:center; } .modal-content { background:white; border-radius:8px; max-width:600px; width:90%; max-height:80vh; display:flex; flex-direction:column; } .modal-header { padding:16px 24px; border-bottom:1px solid #e2e8f0; } .modal-header h3 { font-size:14px; font-weight:700; color:#1e293b; } .modal-body { padding:16px 24px; overflow-y:auto; flex:1; } .modal-close { position:absolute; top:16px; right:24px; font-size:24px; cursor:pointer; color:#64748b; }
-        .comment { margin-bottom:12px; padding:10px; background:#f1f5f9; border-left:3px solid #1e40af; border-radius:4px; } .comment-meta { font-size:10px; color:#64748b; margin-bottom:4px; } .comment-text { font-size:12px; color:#1e293b; }
-        .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; padding:6px 10px; border-radius:6px; } .section-promotores { color:#059669; background:#f0fdf4; } .section-detratores { color:#be123c; background:#fff1f2; } .tabul-item-v2 { padding:10px 0; border-bottom:1px solid #f1f5f9; } .tabul-item-v2:last-child { border-bottom:none; } .tabul-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; } .tabul-sparkline { width:100%; } .tabul-months { display:flex; justify-content:space-between; font-size:8px; color:#94a3b8; padding:0 2px; margin-top:2px; } .cards-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px; margin:16px 0; } .month-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; } .month-card .mc-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:6px; } .month-card .mc-value { font-size:24px; font-weight:700; color:#1e293b; } .month-card .mc-sub { font-size:11px; color:#64748b; margin-top:4px; } .month-card .mc-tema { font-size:11px; color:#64748b; margin-top:6px; } .qual-section { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; margin-bottom:16px; } .qual-section-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:14px; } .qual-table { width:100%; border-collapse:collapse; font-size:13px; } .qual-table th { text-align:left; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#64748b; border-bottom:2px solid #e2e8f0; padding:8px 10px; } .qual-table td { padding:9px 10px; border-bottom:1px solid #f1f5f9; } .qual-table tr:last-child td { border-bottom:none; } .qual-table tr:hover td { background:#f8fafc; } .qual-table .tdright { text-align:right; } .peak { background:#fef3c7; font-weight:600; } .diag { border-left:4px solid #059669; background:#f8fafc; border-radius:0 10px 10px 0; padding:16px 20px; margin-top:16px; } .diag h3 { font-size:12px; font-weight:700; color:#059669; margin-bottom:10px; text-transform:uppercase; letter-spacing:.06em; } .diag p { font-size:13px; line-height:1.6; color:#1e293b; margin-bottom:6px; } .nota-met { font-size:11px; color:#94a3b8; margin-top:10px; }
+        :root {
+            --teal: #00a896;
+            --teal-dark: #007f75;
+            --teal-light: #d9f3f0;
+            --navy: #0f172a;
+            --slate: #475569;
+            --muted: #64748b;
+            --bg: #f7fafb;
+            --card: #ffffff;
+            --line: #e2e8f0;
+            --coral: #ef6f61;
+            --gold: #e5a11a;
+            --green: #2f9e66;
+            --blue: #4682b4;
+            --pink: #c45480;
+            --purple: #8661a8;
+            --orange: #e89d4f;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: var(--bg); color: var(--navy); font-family: Roboto, Arial, sans-serif; }
+        h1, h2, h3, .kpi-value, .nps-big, .nav-pill, .metric-number { font-family: 'Albert Sans', Arial, sans-serif; }
+        .page { max-width: 1400px; margin: 0 auto; padding: 0 30px 48px; }
+        .hero { background: var(--teal); color: white; padding: 30px 30px 28px; border-radius: 0 0 22px 22px; box-shadow: 0 6px 20px rgba(0,168,150,.16); }
+        .hero h1 { margin: 0; font-size: 32px; letter-spacing: -.02em; }
+        .hero p { margin: 8px 0 0; font-size: 15px; opacity: .94; }
+        .nav { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 0; background: rgba(247,250,251,.96); backdrop-filter: blur(8px); }
+        .nav-pill { border: 0; cursor: pointer; padding: 9px 15px; border-radius: 999px; background: #e7eef0; color: var(--slate); font-weight: 700; font-size: 13px; }
+        .nav-pill.active, .nav-pill:hover { background: var(--teal); color: white; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .section-title { font-size: 25px; margin: 24px 0 14px; }
+        .subtitle { color: var(--muted); margin: -6px 0 18px; }
+        .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .kpi, .card { background: var(--card); border: 1px solid #edf2f3; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(15,23,42,.055); }
+        .kpi-label { color: var(--muted); text-transform: uppercase; letter-spacing: .07em; font-size: 11px; font-weight: 800; }
+        .kpi-value { margin-top: 8px; font-size: 30px; font-weight: 800; }
+        .kpi-note { color: var(--muted); font-size: 12px; margin-top: 5px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+        .card h3 { margin: 0 0 14px; font-size: 17px; }
+        .chart { width: 100%; min-height: 290px; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { position: sticky; top: 0; background: var(--teal); color: white; text-align: left; padding: 10px; }
+        td { padding: 9px 10px; border-bottom: 1px solid var(--line); }
+        tr:nth-child(even) td { background: #f8fbfb; }
+        .badge { display: inline-block; border-radius: 999px; padding: 4px 8px; font-weight: 700; font-size: 11px; }
+        .badge.good { background: #dcf5e7; color: #1b7b49; }
+        .badge.bad { background: #fde4e1; color: #b63c31; }
+        .badge.neutral { background: #f1e9d7; color: #94630d; }
+        .callout { padding: 14px 16px; border-left: 4px solid var(--teal); background: var(--teal-light); border-radius: 8px; color: #0a625b; line-height: 1.45; }
+        .nps-hero { display: flex; align-items: center; gap: 26px; }
+        .nps-big { font-size: 68px; line-height: 1; font-weight: 900; color: var(--teal); }
+        .nps-meta { color: var(--muted); font-size: 14px; }
+        .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+        .legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; background: var(--c); }
+        .empty { color: var(--muted); text-align: center; padding: 36px 10px; }
+        .small { font-size: 12px; color: var(--muted); }
+        .comments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .comment { border: 1px solid var(--line); border-radius: 12px; padding: 13px; background: #fff; }
+        .comment .score { font-weight: 800; color: var(--teal-dark); }
+        .comment p { font-size: 13px; line-height: 1.45; margin: 8px 0 0; }
+        @media (max-width: 980px) { .kpis { grid-template-columns: repeat(2,1fr); } .grid-2, .grid-3 { grid-template-columns: 1fr; } .comments-grid { grid-template-columns: repeat(2,1fr); } }
+        @media (max-width: 600px) { .page { padding: 0 14px 30px; } .hero { padding: 24px 20px; } .hero h1 { font-size: 25px; } .kpis, .comments-grid { grid-template-columns: 1fr; } .nps-hero { align-items: flex-start; flex-direction: column; gap: 12px; } }
     </style>
 </head>
+<body>
+<div class="page">
+<header class="hero">
+  <h1>Painel NPS MetLife × iFood</h1>
+  <p>Visão diária da experiência dos entregadores · Dados atualizados até 21/08/2026</p>
+</header>
+<nav class="nav" aria-label="Seções do painel">
+  <button class="nav-pill active" data-target="overview">Visão Geral</button>
+  <button class="nav-pill" data-target="trend">Tendência</button>
+  <button class="nav-pill" data-target="journey">Jornada</button>
+  <button class="nav-pill" data-target="coverage">Coberturas</button>
+  <button class="nav-pill" data-target="qualitative">Análise Qualitativa</button>
+</nav>
+<section id="overview" class="section active">
+  <h2 class="section-title">Visão Geral</h2>
+  <p class="subtitle">Resultados da pesquisa NPS no período disponível.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-label">NPS</div><div class="kpi-value">15</div><div class="kpi-note">Ago./26</div></div>
+    <div class="kpi"><div class="kpi-label">Respondentes</div><div class="kpi-value">467</div><div class="kpi-note">Notas válidas</div></div>
+    <div class="kpi"><div class="kpi-label">Promotores</div><div class="kpi-value">52%</div><div class="kpi-note">Notas 9 e 10</div></div>
+    <div class="kpi"><div class="kpi-label">Detratores</div><div class="kpi-value">37%</div><div class="kpi-note">Notas de 0 a 6</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><h3>Composição do NPS</h3><div id="compositionChart" class="chart"></div><div class="legend"><span style="--c:#2f9e66">Promotores</span><span style="--c:#e5a11a">Neutros</span><span style="--c:#ef6f61">Detratores</span></div></div>
+    <div class="card"><h3>Leitura executiva</h3><div class="callout">O painel mostra a percepção dos respondentes na janela disponível. A interpretação deve considerar a composição da amostra e a diferença entre jornada completa e incompleta.</div><p class="small" style="margin-top:14px">Acompanhe a tendência mensal, a jornada e as coberturas para identificar onde priorizar investigação.</p></div>
+  </div>
+</section>
+<section id="trend" class="section">
+  <h2 class="section-title">Tendência MoM / WoW</h2>
+  <p class="subtitle">Evolução do NPS e do volume de respondentes.</p>
+  <div class="grid-2"><div class="card"><h3>NPS por mês</h3><div id="trendChart" class="chart"></div></div><div class="card"><h3>Respondentes por mês</h3><div id="volumeChart" class="chart"></div></div></div>
+  <div class="card" style="margin-top:16px"><h3>Resumo mensal</h3><div class="table-wrap"><table id="trendTable"><thead><tr><th>Mês</th><th>Respondentes</th><th>NPS</th><th>Promotores</th><th>Neutros</th><th>Detratores</th></tr></thead><tbody></tbody></table></div></div>
+</section>
+<section id="journey" class="section">
+  <h2 class="section-title">Jornada</h2>
+  <p class="subtitle">Comparação entre processos com e sem documentação completa.</p>
+  <div class="grid-2"><div class="card"><h3>NPS por jornada</h3><div id="journeyChart" class="chart"></div></div><div class="card"><h3>Composição por jornada</h3><div id="journeyComposition" class="chart"></div></div></div>
+</section>
+<section id="coverage" class="section">
+  <h2 class="section-title">Grid de Coberturas</h2>
+  <p class="subtitle">NPS e volume por cobertura.</p>
+  <div class="card"><div class="table-wrap"><table id="coverageTable"><thead><tr><th>Cobertura</th><th>Respondentes</th><th>NPS</th><th>Promotores</th><th>Neutros</th><th>Detratores</th></tr></thead><tbody></tbody></table></div></div>
+</section>
+<section id="qualitative" class="section">
+  <h2 class="section-title">Análise Qualitativa</h2>
+  <p class="subtitle">Comentários selecionados dos respondentes.</p>
+  <div class="card"><h3>Motivos associados às notas</h3><div id="reasonChart" class="chart"></div></div>
+  <div class="card" style="margin-top:16px"><h3>Voz do cliente</h3><div id="commentsGrid" class="comments-grid"></div></div>
+</section>
+<!-- SPLIT -->
