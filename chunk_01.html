@@ -3,122 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel NPS MetLife × iFood</title>
+    <title>Painel NPS — Sinistros iFood × MetLife</title>
     <style>
         :root {
-            --teal: #00a896;
-            --teal-dark: #007f75;
-            --teal-light: #d9f3f0;
             --navy: #0f172a;
-            --slate: #475569;
+            --navy-2: #1e293b;
+            --teal: #0f766e;
+            --teal-light: #ccfbf1;
+            --coral: #f97316;
+            --red: #b91c1c;
+            --green: #16a34a;
+            --yellow: #ca8a04;
             --muted: #64748b;
-            --bg: #f7fafb;
-            --card: #ffffff;
             --line: #e2e8f0;
-            --coral: #ef6f61;
-            --gold: #e5a11a;
-            --green: #2f9e66;
-            --blue: #4682b4;
-            --pink: #c45480;
-            --purple: #8661a8;
-            --orange: #e89d4f;
+            --bg: #f1f5f9;
+            --white: #ffffff;
         }
         * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { margin: 0; background: var(--bg); color: var(--navy); font-family: Roboto, Arial, sans-serif; }
-        h1, h2, h3, .kpi-value, .nps-big, .nav-pill, .metric-number { font-family: 'Albert Sans', Arial, sans-serif; }
-        .page { max-width: 1400px; margin: 0 auto; padding: 0 30px 48px; }
-        .hero { background: var(--teal); color: white; padding: 30px 30px 28px; border-radius: 0 0 22px 22px; box-shadow: 0 6px 20px rgba(0,168,150,.16); }
-        .hero h1 { margin: 0; font-size: 32px; letter-spacing: -.02em; }
-        .hero p { margin: 8px 0 0; font-size: 15px; opacity: .94; }
-        .nav { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 0; background: rgba(247,250,251,.96); backdrop-filter: blur(8px); }
-        .nav-pill { border: 0; cursor: pointer; padding: 9px 15px; border-radius: 999px; background: #e7eef0; color: var(--slate); font-weight: 700; font-size: 13px; }
-        .nav-pill.active, .nav-pill:hover { background: var(--teal); color: white; }
-        .section { display: none; }
-        .section.active { display: block; }
-        .section-title { font-size: 25px; margin: 24px 0 14px; }
-        .subtitle { color: var(--muted); margin: -6px 0 18px; }
-        .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-        .kpi, .card { background: var(--card); border: 1px solid #edf2f3; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(15,23,42,.055); }
-        .kpi-label { color: var(--muted); text-transform: uppercase; letter-spacing: .07em; font-size: 11px; font-weight: 800; }
-        .kpi-value { margin-top: 8px; font-size: 30px; font-weight: 800; }
-        .kpi-note { color: var(--muted); font-size: 12px; margin-top: 5px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
-        .card h3 { margin: 0 0 14px; font-size: 17px; }
-        .chart { width: 100%; min-height: 290px; }
-        .table-wrap { overflow-x: auto; }
+        body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1e293b; background: var(--bg); }
+        .wrap { max-width: 1440px; margin: auto; padding: 0 24px 36px; }
+        header { background: var(--navy); color: white; padding: 28px 0 22px; }
+        header .wrap { padding-bottom: 0; }
+        h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
+        .sub { color: #cbd5e1; margin-top: 8px; font-size: 14px; }
+        .nav { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; overflow:auto; padding: 18px 0 12px; background: var(--bg); }
+        .nav a { white-space: nowrap; text-decoration: none; color: #334155; background: white; border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px; font-size: 13px; font-weight: 700; }
+        .nav a:hover { color: var(--teal); border-color: var(--teal); }
+        section { background: white; border: 1px solid var(--line); border-radius: 14px; margin: 14px 0; padding: 22px; box-shadow: 0 3px 12px rgba(15,23,42,.05); }
+        h2 { margin: 0 0 14px; color: var(--navy); font-size: 20px; }
+        h3 { color: #334155; font-size: 15px; margin: 0 0 10px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .card { border: 1px solid var(--line); border-radius: 10px; padding: 15px; min-height: 76px; }
+        .label { text-transform: uppercase; font-size: 11px; color: var(--muted); letter-spacing: .07em; font-weight: 700; }
+        .value { font-size: 30px; font-weight: 800; color: var(--navy); margin-top: 7px; }
+        .small { color: var(--muted); font-size: 12px; margin-top: 3px; }
         table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th { position: sticky; top: 0; background: var(--teal); color: white; text-align: left; padding: 10px; }
-        td { padding: 9px 10px; border-bottom: 1px solid var(--line); }
-        tr:nth-child(even) td { background: #f8fbfb; }
-        .badge { display: inline-block; border-radius: 999px; padding: 4px 8px; font-weight: 700; font-size: 11px; }
-        .badge.good { background: #dcf5e7; color: #1b7b49; }
-        .badge.bad { background: #fde4e1; color: #b63c31; }
-        .badge.neutral { background: #f1e9d7; color: #94630d; }
-        .callout { padding: 14px 16px; border-left: 4px solid var(--teal); background: var(--teal-light); border-radius: 8px; color: #0a625b; line-height: 1.45; }
-        .nps-hero { display: flex; align-items: center; gap: 26px; }
-        .nps-big { font-size: 68px; line-height: 1; font-weight: 900; color: var(--teal); }
-        .nps-meta { color: var(--muted); font-size: 14px; }
-        .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
-        .legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; background: var(--c); }
-        .empty { color: var(--muted); text-align: center; padding: 36px 10px; }
-        .small { font-size: 12px; color: var(--muted); }
-        .comments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .comment { border: 1px solid var(--line); border-radius: 12px; padding: 13px; background: #fff; }
-        .comment .score { font-weight: 800; color: var(--teal-dark); }
-        .comment p { font-size: 13px; line-height: 1.45; margin: 8px 0 0; }
-        @media (max-width: 980px) { .kpis { grid-template-columns: repeat(2,1fr); } .grid-2, .grid-3 { grid-template-columns: 1fr; } .comments-grid { grid-template-columns: repeat(2,1fr); } }
-        @media (max-width: 600px) { .page { padding: 0 14px 30px; } .hero { padding: 24px 20px; } .hero h1 { font-size: 25px; } .kpis, .comments-grid { grid-template-columns: 1fr; } .nps-hero { align-items: flex-start; flex-direction: column; gap: 12px; } }
+        th { background: var(--teal); color: white; position: sticky; top: 0; text-align: left; padding: 9px; }
+        td { border-bottom: 1px solid var(--line); padding: 8px 9px; vertical-align: top; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        .charts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .chart { border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-height: 260px; }
+        svg { width: 100%; height: auto; display: block; }
+        .muted { color: var(--muted); }
+        @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } .charts { grid-template-columns: 1fr; } }
+        @media (max-width: 560px) { .wrap { padding: 0 12px 24px; } .grid { grid-template-columns: 1fr; } h1 { font-size: 22px; } section { padding: 15px; } }
     </style>
+<!-- SPLIT -->
+
 </head>
 <body>
-<div class="page">
-<header class="hero">
-  <h1>Painel NPS MetLife × iFood</h1>
-  <p>Visão diária da experiência dos entregadores · Dados atualizados até 21/08/2026</p>
+<header>
+    <div class="wrap">
+        <h1>Painel NPS — Sinistros iFood × MetLife</h1>
+        <div class="sub">Dados distribuídos até <strong style="color:#f1f5f9">21/08/2026</strong> · MTD de ago./26</div>
+    </div>
 </header>
-<nav class="nav" aria-label="Seções do painel">
-  <button class="nav-pill active" data-target="overview">Visão Geral</button>
-  <button class="nav-pill" data-target="trend">Tendência</button>
-  <button class="nav-pill" data-target="journey">Jornada</button>
-  <button class="nav-pill" data-target="coverage">Coberturas</button>
-  <button class="nav-pill" data-target="qualitative">Análise Qualitativa</button>
+<div class="wrap">
+<nav class="nav">
+    <a href="#visao-geral">Visão Geral</a><a href="#tendencia">Tendência</a><a href="#jornada">Jornada</a><a href="#coberturas">Coberturas</a><a href="#qualitativa">Qualitativa</a>
 </nav>
-<section id="overview" class="section active">
-  <h2 class="section-title">Visão Geral</h2>
-  <p class="subtitle">Resultados da pesquisa NPS no período disponível.</p>
-  <div class="kpis">
-    <div class="kpi"><div class="kpi-label">NPS</div><div class="kpi-value">15</div><div class="kpi-note">Ago./26</div></div>
-    <div class="kpi"><div class="kpi-label">Respondentes</div><div class="kpi-value">467</div><div class="kpi-note">Notas válidas</div></div>
-    <div class="kpi"><div class="kpi-label">Promotores</div><div class="kpi-value">52%</div><div class="kpi-note">Notas 9 e 10</div></div>
-    <div class="kpi"><div class="kpi-label">Detratores</div><div class="kpi-value">37%</div><div class="kpi-note">Notas de 0 a 6</div></div>
+<section id="visao-geral">
+  <h2>1. Visão geral</h2>
+  <div class="grid">
+    <div class="card"><div class="label">NPS geral</div><div class="value">15</div><div class="small">ago./26</div></div>
+    <div class="card"><div class="label">Respondentes</div><div class="value">467</div><div class="small">com nota válida</div></div>
+    <div class="card"><div class="label">Promotores</div><div class="value">55%</div><div class="small">notas 9 e 10</div></div>
+    <div class="card"><div class="label">Detratores</div><div class="value">40%</div><div class="small">notas de 0 a 6</div></div>
   </div>
-  <div class="grid-2">
-    <div class="card"><h3>Composição do NPS</h3><div id="compositionChart" class="chart"></div><div class="legend"><span style="--c:#2f9e66">Promotores</span><span style="--c:#e5a11a">Neutros</span><span style="--c:#ef6f61">Detratores</span></div></div>
-    <div class="card"><h3>Leitura executiva</h3><div class="callout">O painel mostra a percepção dos respondentes na janela disponível. A interpretação deve considerar a composição da amostra e a diferença entre jornada completa e incompleta.</div><p class="small" style="margin-top:14px">Acompanhe a tendência mensal, a jornada e as coberturas para identificar onde priorizar investigação.</p></div>
-  </div>
-</section>
-<section id="trend" class="section">
-  <h2 class="section-title">Tendência MoM / WoW</h2>
-  <p class="subtitle">Evolução do NPS e do volume de respondentes.</p>
-  <div class="grid-2"><div class="card"><h3>NPS por mês</h3><div id="trendChart" class="chart"></div></div><div class="card"><h3>Respondentes por mês</h3><div id="volumeChart" class="chart"></div></div></div>
-  <div class="card" style="margin-top:16px"><h3>Resumo mensal</h3><div class="table-wrap"><table id="trendTable"><thead><tr><th>Mês</th><th>Respondentes</th><th>NPS</th><th>Promotores</th><th>Neutros</th><th>Detratores</th></tr></thead><tbody></tbody></table></div></div>
-</section>
-<section id="journey" class="section">
-  <h2 class="section-title">Jornada</h2>
-  <p class="subtitle">Comparação entre processos com e sem documentação completa.</p>
-  <div class="grid-2"><div class="card"><h3>NPS por jornada</h3><div id="journeyChart" class="chart"></div></div><div class="card"><h3>Composição por jornada</h3><div id="journeyComposition" class="chart"></div></div></div>
-</section>
-<section id="coverage" class="section">
-  <h2 class="section-title">Grid de Coberturas</h2>
-  <p class="subtitle">NPS e volume por cobertura.</p>
-  <div class="card"><div class="table-wrap"><table id="coverageTable"><thead><tr><th>Cobertura</th><th>Respondentes</th><th>NPS</th><th>Promotores</th><th>Neutros</th><th>Detratores</th></tr></thead><tbody></tbody></table></div></div>
-</section>
-<section id="qualitative" class="section">
-  <h2 class="section-title">Análise Qualitativa</h2>
-  <p class="subtitle">Comentários selecionados dos respondentes.</p>
-  <div class="card"><h3>Motivos associados às notas</h3><div id="reasonChart" class="chart"></div></div>
-  <div class="card" style="margin-top:16px"><h3>Voz do cliente</h3><div id="commentsGrid" class="comments-grid"></div></div>
+  <div style="height:14px"></div>
+  <table>
+    <thead><tr><th>Indicador</th><th>ago./26</th><th>jul./26</th><th>Variação</th></tr></thead>
+    <tbody>
+      <tr><td>NPS</td><td>15</td><td>4</td><td>+11 p.p.</td></tr>
+      <tr><td>Respondentes</td><td>467</td><td>209</td><td>+123%</td></tr>
+      <tr><td>Promotores</td><td>55%</td><td>48%</td><td>+7 p.p.</td></tr>
+      <tr><td>Neutros</td><td>5%</td><td>8%</td><td>-3 p.p.</td></tr>
+      <tr><td>Detratores</td><td>40%</td><td>44%</td><td>-4 p.p.</td></tr>
+    </tbody>
+  </table>
 </section>
 <!-- SPLIT -->
