@@ -1,85 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel NPS — Sinistros iFood × MetLife</title>
-    <style>
-        :root {
-            --navy: #0f172a;
-            --navy-2: #1e293b;
-            --teal: #0f766e;
-            --teal-light: #ccfbf1;
-            --coral: #f97316;
-            --red: #b91c1c;
-            --green: #16a34a;
-            --yellow: #ca8a04;
-            --muted: #64748b;
-            --line: #e2e8f0;
-            --bg: #f1f5f9;
-            --white: #ffffff;
-        }
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1e293b; background: var(--bg); }
-        .wrap { max-width: 1440px; margin: auto; padding: 0 24px 36px; }
-        header { background: var(--navy); color: white; padding: 28px 0 22px; }
-        header .wrap { padding-bottom: 0; }
-        h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
-        .sub { color: #cbd5e1; margin-top: 8px; font-size: 14px; }
-        .nav { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; overflow:auto; padding: 18px 0 12px; background: var(--bg); }
-        .nav a { white-space: nowrap; text-decoration: none; color: #334155; background: white; border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px; font-size: 13px; font-weight: 700; }
-        .nav a:hover { color: var(--teal); border-color: var(--teal); }
-        section { background: white; border: 1px solid var(--line); border-radius: 14px; margin: 14px 0; padding: 22px; box-shadow: 0 3px 12px rgba(15,23,42,.05); }
-        h2 { margin: 0 0 14px; color: var(--navy); font-size: 20px; }
-        h3 { color: #334155; font-size: 15px; margin: 0 0 10px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        .card { border: 1px solid var(--line); border-radius: 10px; padding: 15px; min-height: 76px; }
-        .label { text-transform: uppercase; font-size: 11px; color: var(--muted); letter-spacing: .07em; font-weight: 700; }
-        .value { font-size: 30px; font-weight: 800; color: var(--navy); margin-top: 7px; }
-        .small { color: var(--muted); font-size: 12px; margin-top: 3px; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th { background: var(--teal); color: white; position: sticky; top: 0; text-align: left; padding: 9px; }
-        td { border-bottom: 1px solid var(--line); padding: 8px 9px; vertical-align: top; }
-        tr:nth-child(even) td { background: #f8fafc; }
-        .charts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        .chart { border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-height: 260px; }
-        svg { width: 100%; height: auto; display: block; }
-        .muted { color: var(--muted); }
-        @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } .charts { grid-template-columns: 1fr; } }
-        @media (max-width: 560px) { .wrap { padding: 0 12px 24px; } .grid { grid-template-columns: 1fr; } h1 { font-size: 22px; } section { padding: 15px; } }
-    </style>
-<!-- SPLIT -->
-
+<meta charset="UTF-8">
+<title>Painel NPS MetLife x iFood</title>
+<style>body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#333}#app{padding:20px;max-width:1200px;margin:auto}#loading{text-align:center;color:#666;padding:40px}</style>
 </head>
-<body>
-<header>
-    <div class="wrap">
-        <h1>Painel NPS — Sinistros iFood × MetLife</h1>
-        <div class="sub">Dados distribuídos até <strong style="color:#f1f5f9">21/08/2026</strong> · MTD de ago./26</div>
-    </div>
-</header>
-<div class="wrap">
-<nav class="nav">
-    <a href="#visao-geral">Visão Geral</a><a href="#tendencia">Tendência</a><a href="#jornada">Jornada</a><a href="#coberturas">Coberturas</a><a href="#qualitativa">Qualitativa</a>
-</nav>
-<section id="visao-geral">
-  <h2>1. Visão geral</h2>
-  <div class="grid">
-    <div class="card"><div class="label">NPS geral</div><div class="value">15</div><div class="small">ago./26</div></div>
-    <div class="card"><div class="label">Respondentes</div><div class="value">467</div><div class="small">com nota válida</div></div>
-    <div class="card"><div class="label">Promotores</div><div class="value">55%</div><div class="small">notas 9 e 10</div></div>
-    <div class="card"><div class="label">Detratores</div><div class="value">40%</div><div class="small">notas de 0 a 6</div></div>
-  </div>
-  <div style="height:14px"></div>
-  <table>
-    <thead><tr><th>Indicador</th><th>ago./26</th><th>jul./26</th><th>Variação</th></tr></thead>
-    <tbody>
-      <tr><td>NPS</td><td>15</td><td>4</td><td>+11 p.p.</td></tr>
-      <tr><td>Respondentes</td><td>467</td><td>209</td><td>+123%</td></tr>
-      <tr><td>Promotores</td><td>55%</td><td>48%</td><td>+7 p.p.</td></tr>
-      <tr><td>Neutros</td><td>5%</td><td>8%</td><td>-3 p.p.</td></tr>
-      <tr><td>Detratores</td><td>40%</td><td>44%</td><td>-4 p.p.</td></tr>
-    </tbody>
-  </table>
-</section>
+<body><div id="app"><div id="loading">Carregando Painel NPS...</div></div>
+<script>const parts=['chunk_01.html','chunk_02.html','chunk_03.html','chunk_04.html','chunk_05.html','chunk_06.html','chunk_07.html','chunk_08.html','chunk_09.html','chunk_10.html','chunk_11.html','chunk_12.html','chunk_13.html','chunk_14.html','chunk_15.html','chunk_16.html','chunk_17.html','chunk_18.html','chunk_19.html','chunk_20.html'];window.PANEL_PARTS=parts;</script>
 <!-- SPLIT -->
