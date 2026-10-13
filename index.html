@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel NPS — MetLife × iFood</title>
-<style>
-  html,body{margin:0;padding:0;background:#f5f7f8;color:#24343b;font-family:Arial,sans-serif}
-  #app{max-width:1200px;margin:0 auto;padding:24px}
-  .loading{padding:48px;text-align:center;color:#55717b}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel NPS MetLife × iFood</title>
+  <style>
+    body { margin: 0; background: #f1f5f9; font-family: system-ui; }
+    #loading { display:flex; align-items:center; justify-content:center; height:100vh; flex-direction:column; color:#475569; }
+    .spinner { width:40px;height:40px;border:3px solid #e2e8f0;border-top-color:#3b82f6; border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:16px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+  </style>
 </head>
 <body>
-<div id="app"><div class="loading">Carregando Painel NPS MetLife × iFood…</div></div>
-<script>
-(async function(){
-  const root=document.getElementById('app');
-  try {
-    const files=['chunk_01.html','chunk_02.html','chunk_03.html','chunk_04.html','chunk_05.html','chunk_06.html','chunk_07.html','chunk_08.html','chunk_09.html','chunk_10.html','chunk_11.html','chunk_12.html','chunk_13.html','chunk_14.html','chunk_15.html','chunk_16.html','chunk_17.html','chunk_18.html','chunk_19.html','chunk_20.html'];
-    const pieces=await Promise.all(files.map(async f=>{const r=await fetch(f,{cache:'no-store'});if(!r.ok)throw new Error(f+': '+r.status);return r.text()}));
-    root.innerHTML=pieces.join('');
-    window.dispatchEvent(new Event('DOMContentLoaded'));
-  } catch(e) { root.innerHTML='<div class="loading">Não foi possível carregar o painel. '+String(e.message||e)+'</div>'; }
-})();
-</script>
+  <div id="loading"><div class="spinner"></div><div>Carregando painel...</div></div>
+  <div id="root"></div>
+  <script>
+    const CHUNKS = ['chunk_01.html', 'chunk_02.html', 'chunk_03.html', 'chunk_04.html', 'chunk_05.html', 'chunk_06.html', 'chunk_07.html', 'chunk_08.html', 'chunk_09.html', 'chunk_10.html', 'chunk_11.html', 'chunk_12.html', 'chunk_13.html', 'chunk_14.html', 'chunk_15.html', 'chunk_16.html', 'chunk_17.html', 'chunk_18.html', 'chunk_19.html', 'chunk_20.html'];
+    async function load() {
+      try {
+        const responses = await Promise.all(CHUNKS.map(c => fetch(c + '?v=20261013')));
+        if (responses.some(r => !r.ok)) throw new Error('Falha ao carregar chunks');
+        const html = await Promise.all(responses.map(r => r.text()));
+        document.getElementById('root').innerHTML = html.join('');
+        document.getElementById('loading').style.display = 'none';
+      } catch (e) { document.getElementById('loading').innerHTML = '<div>Erro ao carregar painel</div>'; }
+    }
+    load();
+  </script>
 </body>
 </html>

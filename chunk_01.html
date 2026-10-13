@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel NPS MetLife × iFood — Ago./26</title>
-<style>
-:root{--teal:#157a8a;--ink:#263238;--muted:#6b7c83;--bg:#f3f6f7;--card:#fff;--coral:#c9694e;--green:#4d927a;--line:#dfe7e9}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,sans-serif}a{color:var(--teal)}.wrap{max-width:1180px;margin:auto;padding:28px}.hero{background:linear-gradient(135deg,#e8f3f4,#fff);padding:28px;border-radius:18px;margin-bottom:18px}.eyebrow{color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px}.title{font-size:30px;font-weight:700;margin:8px 0}.sub{color:var(--muted);font-size:15px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.label{color:var(--muted);font-size:12px}.value{font-size:28px;font-weight:700;margin-top:8px;color:var(--teal)}.section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:18px}.section h2{margin:0 0 14px;color:var(--teal);font-size:20px}.notice{background:#fff4ef;border-left:4px solid var(--coral);padding:12px;border-radius:8px;color:#704033}@media(max-width:800px){.cards{grid-template-columns:repeat(2,1fr)}.wrap{padding:16px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel NPS MetLife × iFood</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif; background:#f8fafc; color:#1e293b; padding:20px; }
+        .container { max-width:1200px; margin:auto; }
+        header { text-align:center; padding:20px 0 18px; }
+        header h1 { color:#0f766e; font-size:28px; margin-bottom:6px; }
+        header p { color:#64748b; font-size:14px; }
+        .card { background:white; border-radius:12px; padding:20px; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+        .card-title { font-size:18px; font-weight:700; color:#0f766e; margin-bottom:16px; }
+        .big-stat { text-align:center; padding:12px 0; }
+        .valor { font-size:56px; font-weight:800; color:#0f766e; }
+        .label { font-size:13px; color:#64748b; }
+        .delta { font-size:14px; margin-top:5px; }
+        .positivo { color:#15803d; }
+        .distribuicao { display:flex; justify-content:center; gap:42px; margin-top:10px; }
+        .dist-item { text-align:center; }
+        .pct { font-size:22px; font-weight:700; }
+        .prom { color:#059669; }.neu { color:#64748b; }.det { color:#be123c; }
+        .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+        @media(max-width:800px){.grid-2{grid-template-columns:1fr}.distribuicao{gap:20px}}
+    </style>
 </head>
-<body><div class="wrap">
-<header class="hero"><div class="eyebrow">MetLife × iFood · NPS relacional</div><div class="title">Painel NPS</div><div class="sub">Visão consolidada com dados atualizados até 21/08/2026.</div></header>
-<section class="cards"><div class="card"><div class="label">NPS ago./26</div><div class="value">15</div></div><div class="card"><div class="label">Respondentes</div><div class="value">467</div></div><div class="card"><div class="label">Promotores</div><div class="value">49%</div></div><div class="card"><div class="label">Detratores</div><div class="value">34%</div></div></section>
-<section class="section"><h2>Visão geral</h2><p class="notice">O painel apresenta a composição do NPS, tendências e recortes de jornada, cobertura e comentários.</p></section>
-<!-- SPLIT -->
+<body>
+    <div class="container">
+        <header>
+            <h1>Painel NPS MetLife × iFood</h1>
+            <p>Dados disponíveis até 21/08/2026 &nbsp;·&nbsp; Ago/26 MTD</p>
+        </header>
+        <div class="container">
+        <!-- Visão Geral -->
+        <div class="card">
+            <div class="card-title">Visão Geral</div>
+            <div class="big-stat">
+                <div class="valor">+15</div><div class="label">NPS Ago/26</div><div class="delta positivo">+3 vs Jul/26</div>
+            </div>
+            <div class="distribuicao"><div class="dist-item"><div class="pct prom">54%</div><div class="label">Promotores</div></div><div class="dist-item"><div class="pct neu">7%</div><div class="label">Neutros</div></div><div class="dist-item"><div class="pct det">39%</div><div class="label">Detratores</div></div></div>
+        </div>
+        <!-- SPLIT -->
