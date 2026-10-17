@@ -24,7 +24,6 @@
     Promise.all(CHUNKS.map(c => fetch(c).then(r => r.text())))
       .then(parts => {
         document.body.innerHTML = parts.join('');
-        // Re-executar scripts inline
         document.querySelectorAll('script').forEach(s => {
           if (!s.src) {
             const ns = document.createElement('script');
