@@ -1,4 +1,19 @@
 
+
+    <div id="modal" class="modal" onclick="if(event.target===this) fecharModal()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Comentários</h3>
+                <button class="modal-close" onclick="fecharModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="section-title section-promotores">Promotores</div>
+                <div id="modal-promotores"></div>
+                <div class="section-title section-detratores">Detratores</div>
+                <div id="modal-detratores"></div>
+            </div>
+        </div>
+    </div>
     <script>
         const COMMENTS_DATA = {"Suporte e atendimento": {"promotores": [{"texto": "Os atendentes são ótimos pois deixa tudo claro para o assegurado,parabéns", "nps": 10, "cov": "DMHO", "mes": "ago./26"}, {"texto": "Foi simples de acompanhar e", "nps": 10, "cov": "DIT", "mes": "ago./26"}], "detratores": [{"texto": "Não consegui o benefício e", "nps": 3, "cov": "IPA", "mes": "ago./26"}, {"texto": "Tudo é ruim", "nps": 0, "cov": "DIT", "mes": "ago./26"}]}, "Valor recebido": {"promotores": [{"texto": "Obrigada pela agilidade mim aju", "nps": 10, "cov": "DIT", "mes": "ago./26"}], "detratores": [{"texto": "Fiquei quase 10 meses parado. perdi parte dos movimentos do torzelo esquerdo.", "nps": 0, "cov": "IPA", "mes": "ago./26"}]}, "Comunicações sobre o processo": {"promotores": [{"texto": "O atendimento e me responderam todas a ajuda que eu prec", "nps": 10, "cov": "DIT", "mes": "ago./26"}], "detratores": [{"texto": "Sempre trabalhei com Ifood, me machuquei feio e não recebi um real de ajuda não indico", "nps": 0, "cov": "DMHO", "mes": "ago./26"}]}, "Tempo de análise": {"promotores": [{"texto": "Eles depositaram o dinheiro rápido", "nps": 10, "cov": "DIT", "mes": "ago./26"}], "detratores": [{"texto": "muita demora e", "nps": 5, "cov": "DIT", "mes": "ago./26"}]}, "Processo de abertura": {"promotores": [{"texto": "Muito bom atendimento maravilhoso e rapido", "nps": 10, "cov": "DIT", "mes": "ago./26"}], "detratores": [{"texto": "Não recebi nada, fiquei alguns dias parados sem poder trabalhar", "nps": 0, "cov": "DIT", "mes": "ago./26"}]}, "Acompanhamento do processo": {"promotores": [{"texto": "A equipe me tratou super bem", "nps": 10, "cov": "DIT", "mes": "ago./26"}], "detratores": [{"texto": "Até hoje não recebi retorno sobre meu acidente.", "nps": 4, "cov": "DIT", "mes": "ago./26"}]}};
         function abrirModal(tema) {
