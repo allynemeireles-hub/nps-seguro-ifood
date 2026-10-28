@@ -1,13 +1,1 @@
-
-<script>
-const COMMENTS_DATA = {"Suporte e atendimento": {"promotores": ["Uma boa seguradora"], "detratores": ["O atendimento poderia ser melhor"]}, "Valor recebido": {"promotores": [], "detratores": ["Não fiquei satisfeito com a minha indenização"]}, "Comunicações sobre o processo": {"promotores": ["Tudo foi explicado"], "detratores": ["Não me deram nenhum benefício"]}};
-function showComments(tema,tipo){
-  const modal=document.getElementById('commentsModal');
-  const body=document.getElementById('commentsBody');
-  const items=(COMMENTS_DATA[tema]||{})[tipo]||[];
-  body.innerHTML=items.map(x=>`<div class="comment"><div class="comment-meta">${tema}</div><div class="comment-text">${x}</div></div>`).join('')||'<p>Sem comentários.</p>';
-  modal.classList.add('active');
-}
-</script>
-</body>
-</html>
+<section data-chunk="20">Fim do painel.</section>
