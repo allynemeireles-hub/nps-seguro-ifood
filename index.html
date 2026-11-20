@@ -3,5 +3,5 @@
 <head><meta charset="UTF-8"><title>Painel NPS MetLife × iFood</title><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;background:#f8fafc"><div id="app">Carregando painel…</div><script>
 const chunks = ["chunk_01.html","chunk_02.html","chunk_03.html","chunk_04.html","chunk_05.html","chunk_06.html","chunk_07.html","chunk_08.html","chunk_09.html","chunk_10.html","chunk_11.html","chunk_12.html","chunk_13.html","chunk_14.html","chunk_15.html","chunk_16.html","chunk_17.html","chunk_18.html","chunk_19.html","chunk_20.html"];
-Promise.all(chunks.map(c=>fetch(c).then(r=>{if(!r.ok)throw new Error(c+': '+r.status);return r.text()}))).then(parts=>{document.open();document.write(parts.join(''));document.close()}).catch(e=>{document.getElementById('app').textContent='Não foi possível carregar o painel: '+e.message});
+Promise.all(chunks.map(c=>fetch(c).then(r=>{if(!r.ok)throw new Error(c+': '+r.status);return r.text()}))).then(parts=>{document.open();document.write(parts.join('').replace(/<!-- SPLIT -->/g,''));document.close()}).catch(e=>{document.getElementById('app').textContent='Não foi possível carregar o painel: '+e.message});
 </script></body></html>
